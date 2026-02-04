@@ -1,0 +1,3 @@
+# Entities
+
+Domänenobjekte, Attribute, Beziehungen.

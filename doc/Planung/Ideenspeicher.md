@@ -1,0 +1,1 @@
+- Systemprompt für corporate design (grünes CD)
