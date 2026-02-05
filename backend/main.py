@@ -6,6 +6,7 @@ import os
 import sys
 import uvicorn
 import re
+import uuid
 from dotenv import load_dotenv
 from pydantic import BaseModel
 
@@ -121,7 +122,6 @@ async def image_to_json(file: UploadFile = File(...)):
 @app.post("/api/adapt/{model}")
 async def adapt_prompt(model: str, base_prompt_data: dict):
     """Universal BasePrompt → modell-spezifisches Format with validation and defaulting"""
-    import uuid
     correlation_id = str(uuid.uuid4())
     
     try:

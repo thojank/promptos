@@ -2,13 +2,13 @@
 Validation and Defaulting logic for BasePrompt
 """
 
-from typing import List, Tuple, Any, Dict
+from typing import List, Tuple, Any, Dict, Optional
 from pydantic import ValidationError
 from backend.models import BasePrompt, Subject, Environment, Style, TechSpecs
 from backend.errors import ErrorDetail, ErrorCode, ErrorEnvelope
 
 
-def validate_base_prompt(data: dict) -> Tuple[bool, List[ErrorDetail], BasePrompt]:
+def validate_base_prompt(data: dict) -> Tuple[bool, List[ErrorDetail], Optional[BasePrompt]]:
     """
     Validate BasePrompt data and return validation results.
     
