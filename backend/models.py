@@ -8,7 +8,7 @@ Basiert auf dem Z-Image-Turbo JSON Prompt Guide v2:
 """
 
 from pydantic import BaseModel, Field, validator
-from typing import Optional, List
+from typing import Optional, List, Dict, Union
 from enum import Enum
 
 
@@ -116,6 +116,13 @@ class TechSpecs(BaseModel):
     aspect_ratio: Optional[str] = Field(default=None, description="Seitenverhältnis, z.B. 16:9")
     seed: Optional[int] = Field(default=None, description="Seed")
     cfg_scale: Optional[float] = Field(default=None, description="CFG Scale")
+    resolution: Optional[Union[str, Dict[str, int]]] = Field(
+        default=None, description="Aufloesung, z.B. '1024x1536' oder {width,height}"
+    )
+    steps: Optional[int] = Field(default=None, description="Sampling steps")
+    guidance: Optional[float] = Field(default=None, description="Guidance scale")
+    sampler: Optional[str] = Field(default=None, description="Sampler name")
+    negative_prompt: Optional[str] = Field(default=None, description="Negative prompt")
 
 
 class BasePrompt(BaseModel):
