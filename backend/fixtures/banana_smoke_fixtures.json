@@ -1,0 +1,68 @@
+{
+  "minimal_portrait": {
+    "subject": {
+      "description": "Valentina Ruiz, 22, Colombian-Lebanese student from Medellín"
+    },
+    "environment": {
+      "location": "neutral background, indoor studio"
+    }
+  },
+  "product_shot": {
+    "subject": {
+      "description": "Premium leather handbag",
+      "attributes": [
+        "cognac brown color",
+        "hand-stitched details",
+        "minimalist design"
+      ]
+    },
+    "environment": {
+      "location": "white seamless backdrop",
+      "atmosphere": "bright, clean studio environment",
+      "weather": "controlled lighting"
+    },
+    "style": {
+      "lighting": "soft diffused light with subtle shadows",
+      "camera": "macro lens, product photography angle",
+      "film_stock": "clean digital render",
+      "aesthetics": [
+        "luxury product photography",
+        "high detail",
+        "professional"
+      ]
+    }
+  },
+  "cinematic_scene": {
+    "subject": {
+      "description": "Elena, a detective in her mid-40s, noir aesthetic",
+      "attributes": [
+        "dark tailored coat",
+        "weathered face with sharp eyes",
+        "cigarette in hand"
+      ]
+    },
+    "environment": {
+      "location": "rainy alley in 1950s Los Angeles",
+      "atmosphere": "moody, tense, neon sign glow",
+      "weather": "heavy rain, wet pavement reflecting lights"
+    },
+    "style": {
+      "lighting": "dramatic noir lighting with harsh shadows",
+      "camera": "35mm film, low angle, close profile",
+      "film_stock": "Kodak Tri-X black and white",
+      "aesthetics": [
+        "classic film noir",
+        "atmospheric",
+        "cinematic",
+        "high contrast grayscale"
+      ]
+    },
+    "technical": {
+      "aspect_ratio": "16:9",
+      "seed": 12345,
+      "cfg_scale": 7.5,
+      "steps": 30,
+      "guidance": 7.5
+    }
+  }
+}

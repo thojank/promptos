@@ -158,31 +158,60 @@ class FluxAdapter(BaseAdapter):
 
 
 class BananaAdapter(BaseAdapter):
+    """
+    Banana Adapter Mapping (P0):
+    - Combines subject, environment, style into a single text prompt
+    - All parts joined with ". " as separator
+    - Supports optional fields (environment, style)
+    - No breaking changes from FluxAdapter
+    """
     model_name = "banana-pro"
 
-    def adapt(self, base_prompt: BasePrompt) -> Dict[str, Any]:
-        text_parts = [
-            base_prompt.subject.description,
-            *(base_prompt.subject.attributes or []),
-            base_prompt.environment.location,
-        ]
-        if base_prompt.environment.atmosphere:
-            text_parts.append(base_prompt.environment.atmosphere)
-        if base_prompt.environment.weather:
-            text_parts.append(base_prompt.environment.weather)
-        if base_prompt.style:
-            if base_prompt.style.lighting:
-                text_parts.append(base_prompt.style.lighting)
-            if base_prompt.style.camera:
-                text_parts.append(base_prompt.style.camera)
-            if base_prompt.style.film_stock:
-                text_parts.append(base_prompt.style.film_stock)
-            if base_prompt.style.aesthetics:
-                text_parts.extend(base_prompt.style.aesthetics)
+    def _collect_banana_text_parts(self, base_prompt: BasePrompt) -> List[str]:
+        """Collect all text parts for Banana prompt in correct order."""
+        parts: List[str] = []
 
+        # Subject (required)
+        subject = getattr(base_prompt, "subject", None)
+        if subject:
+            if subject.description:
+                parts.append(subject.description)
+            attributes = getattr(subject, "attributes", None) or []
+            parts.extend(attributes)
+
+        # Environment (optional)
+        environment = getattr(base_prompt, "environment", None)
+        if environment:
+            if environment.location:
+                parts.append(environment.location)
+            if environment.atmosphere:
+                parts.append(environment.atmosphere)
+            if environment.weather:
+                parts.append(environment.weather)
+
+        # Style (optional)
+        style = getattr(base_prompt, "style", None)
+        if style:
+            if style.lighting:
+                parts.append(style.lighting)
+            if style.camera:
+                parts.append(style.camera)
+            if style.film_stock:
+                parts.append(style.film_stock)
+            aesthetics = getattr(style, "aesthetics", None) or []
+            parts.extend(aesthetics)
+
+        return parts
+
+    def adapt(self, base_prompt: BasePrompt) -> Dict[str, Any]:
+        """
+        Adapt BasePrompt to Banana-pro format.
+        Returns a payload with model, contents (message structure).
+        """
+        text_parts = self._collect_banana_text_parts(base_prompt)
         text = ". ".join([p for p in text_parts if p])
 
-        return {
+        payload: Dict[str, Any] = {
             "model": "banana-pro",
             "contents": [
                 {
@@ -191,6 +220,24 @@ class BananaAdapter(BaseAdapter):
                 }
             ],
         }
+
+        # Optional: add technical metadata if present
+        technical = getattr(base_prompt, "technical", None)
+        if technical:
+            meta: Dict[str, Any] = {"baseprompt_version": "v1"}
+
+            seed = getattr(technical, "seed", None)
+            if seed is not None:
+                payload["seed"] = seed
+                meta["seed_provided"] = True
+
+            steps = getattr(technical, "steps", None)
+            if steps is not None:
+                payload["steps"] = steps
+
+            payload["meta"] = meta
+
+        return payload
 
 
 def get_adapter(model: str) -> BaseAdapter:
