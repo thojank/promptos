@@ -55,12 +55,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Planung/Ideenspeicher.md",
+                "file": "Planung/README_NEXT_STEPS_EXECUTION.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "Ideenspeicher"
+              "title": "README_NEXT_STEPS_EXECUTION"
             }
           }
         ],
@@ -157,7 +157,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Planung/Ideenspeicher.md",
+                "file": "Planung/README_NEXT_STEPS_EXECUTION.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -167,7 +167,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Rückverweise auf Ideenspeicher"
+              "title": "Rückverweise auf README_NEXT_STEPS_EXECUTION"
             }
           },
           {
@@ -176,12 +176,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Planung/Ideenspeicher.md",
+                "file": "Planung/README_NEXT_STEPS_EXECUTION.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Ausgehende Links von Ideenspeicher öffnen"
+              "title": "Ausgehende Links von README_NEXT_STEPS_EXECUTION öffnen"
             }
           },
           {
@@ -219,13 +219,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Planung/Ideenspeicher.md",
+                "file": "Planung/README_NEXT_STEPS_EXECUTION.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Gliederung von Ideenspeicher"
+              "title": "Gliederung von README_NEXT_STEPS_EXECUTION"
             }
           }
         ]
@@ -248,6 +248,8 @@
   },
   "active": "71126d86c4b06117",
   "lastOpenFiles": [
+    "Planung/Ideenspeicher.md",
+    "Planung/README_NEXT_STEPS_EXECUTION.md",
     "Planung/README_AUTOMATION.md",
     "Planung/dir_tree.json",
     "Planung/dir_tree.py",
@@ -267,7 +269,6 @@
     "Planung/04_Epics/E-002 Library & MixMatch.md",
     "Planung/04_Epics/E-004 Productization & Access.md",
     "Planung/03_Usecases/UC-001 Text to BasePrompt.md",
-    "Planung/Ideenspeicher.md",
     "Planung/08_Decisions/ADR-0005 Credits & Limits Modell.md",
     "Planung/08_Decisions/ADR-0004 Merge Rules (Bricks).md",
     "Planung/08_Decisions/ADR-0003 Adapter Interface.md",
