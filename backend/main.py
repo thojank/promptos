@@ -19,6 +19,8 @@ load_dotenv()
 from backend.gemini_integration import GeminiPromptGenerator
 from backend.models import ZImageTurboPrompt, PromptAssemblyOutput, BasePrompt
 from backend.adapters import get_adapter
+from backend.errors import ErrorCode, ErrorEnvelope, SuccessResponse, ErrorDetail
+from backend.validation import validate_base_prompt, apply_defaults, create_error_response
 
 app = FastAPI(title="Z-Image-Turbo Prompt Platform")
 
@@ -117,13 +119,66 @@ async def image_to_json(file: UploadFile = File(...)):
 
 
 @app.post("/api/adapt/{model}")
-async def adapt_prompt(model: str, base_prompt: BasePrompt):
-    """Universal BasePrompt → modell-spezifisches Format"""
+async def adapt_prompt(model: str, base_prompt_data: dict):
+    """Universal BasePrompt → modell-spezifisches Format with validation and defaulting"""
+    import uuid
+    correlation_id = str(uuid.uuid4())
+    
     try:
+        # Apply defaults first
+        data_with_defaults, defaults_applied = apply_defaults(base_prompt_data)
+        
+        # Validate the data
+        is_valid, error_details, base_prompt = validate_base_prompt(data_with_defaults)
+        
+        if not is_valid:
+            error_response = create_error_response(
+                error_code=ErrorCode.VALIDATION_ERROR,
+                message="Validation failed for BasePrompt",
+                details=error_details
+            )
+            error_response.correlation_id = correlation_id
+            return JSONResponse(
+                status_code=400,
+                content=error_response.model_dump()
+            )
+        
+        # Adapt to target model format
         adapter = get_adapter(model)
-        return adapter.adapt(base_prompt)
+        adapted_output = adapter.adapt(base_prompt)
+        
+        # Return success response with defaults_applied
+        return SuccessResponse(
+            success=True,
+            data=adapted_output,
+            defaults_applied=defaults_applied,
+            correlation_id=correlation_id
+        ).model_dump()
+        
+    except ValueError as e:
+        # Model not found or adapter error
+        error_response = create_error_response(
+            error_code=ErrorCode.PROVIDER_ERROR,
+            message=str(e),
+            details=None
+        )
+        error_response.correlation_id = correlation_id
+        return JSONResponse(
+            status_code=400,
+            content=error_response.model_dump()
+        )
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        # Unexpected internal error
+        error_response = create_error_response(
+            error_code=ErrorCode.INTERNAL_ERROR,
+            message=f"Internal server error: {str(e)}",
+            details=None
+        )
+        error_response.correlation_id = correlation_id
+        return JSONResponse(
+            status_code=500,
+            content=error_response.model_dump()
+        )
 
 
 @app.post("/api/import/civitai")
