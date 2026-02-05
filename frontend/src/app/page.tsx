@@ -10,7 +10,7 @@ export default function Home() {
             Build Worlds, Not Just Images.
           </h1>
           <p className="text-lg text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto">
-            The Era of "Prompt Guessing" is Over. Stop wasting hours on 500-word text walls that never give you the same result twice. PROMPT-OS transforms your creative vision into structured, modular data.
+            The Era of &quot;Prompt Guessing&quot; is Over. Stop wasting hours on 500-word text walls that never give you the same result twice. PROMPT-OS transforms your creative vision into structured, modular data.
           </p>
           <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/character" className="px-5 py-3 rounded bg-zinc-900 text-white hover:bg-zinc-700 transition">Create Your Free Library</Link>
