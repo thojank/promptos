@@ -35,7 +35,9 @@ class AdapterTests(unittest.TestCase):
         self.assertEqual(output["model"], "flux")
         self.assertIn("Valentina Ruiz", output["prompt"])
         self.assertIn("historic piazza", output["prompt"])
-        self.assertEqual(output["settings"]["aspect_ratio"], "16:9")
+        self.assertEqual(output["width"], 1344)
+        self.assertEqual(output["height"], 768)
+        self.assertEqual(output["guidance"], 7.0)
 
     def test_banana_adapter(self):
         adapter = BananaAdapter()

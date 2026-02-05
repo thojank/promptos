@@ -198,7 +198,9 @@ class AdaptEndpointIntegrationTests(unittest.TestCase):
         self.assertIn("model", data_output)
         self.assertEqual(data_output["model"], "flux")
         self.assertIn("prompt", data_output)
-        self.assertIn("settings", data_output)
+        self.assertIn("width", data_output)
+        self.assertIn("height", data_output)
+        self.assertIn("meta", data_output)
         
     def test_adapted_output_structure_banana(self):
         """Given valid request for Banana When POST to /api/adapt Then data contains Banana-specific structure"""
