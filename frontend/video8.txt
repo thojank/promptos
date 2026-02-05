@@ -1,0 +1,10 @@
+Nächste Idee. Ich bastel ja gerade viel rum mit mit mit bildgebenden KI Modellen,
+also sowas wie Quentin, X, Z-Image, Turbo, Flux, Nano, Banana, so und da gibt es ein
+neues Verfahren, das nennt sich Jason Prompting, das kennst du bestimmt auch.
+Das ist der neueste heiße Scheiß und damit kriegst du Stabilität in die Ergebnisse rein.
+Durch so einen Jason Prompt, wo du Szenen definierst, Main Characters definierst,
+Side Characters und die einzelnen Styles und so weiter. Das ist der neueste heiße Scheiß,
+aber es benutzt jeder auch nur so ad hoc. Ich will dafür jetzt eine Plattform bauen,
+wo du sagst, ich tippe vorne, also du musst dich anmelden und dann darfst du was,
+was ich 10 Prompts am Tag erzeugen. Du tippst vorne deinen Text ein und kriegst hinten Jason
+Prompt raus. Die Plattform kennt.
