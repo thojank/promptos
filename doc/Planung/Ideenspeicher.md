@@ -1,1 +1,3 @@
 - Systemprompt für corporate design (grünes CD)
+- Kimara andock punkt to kimara
+- alles was meine plattform macht ist der input für kimara: modulare bausteine für character, upscaling, video, etc.

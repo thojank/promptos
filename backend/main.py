@@ -16,9 +16,9 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 load_dotenv()
 
 # Import internal modules
-from gemini_integration import GeminiPromptGenerator
-from models import ZImageTurboPrompt, PromptAssemblyOutput, BasePrompt
-from adapters import get_adapter
+from backend.gemini_integration import GeminiPromptGenerator
+from backend.models import ZImageTurboPrompt, PromptAssemblyOutput, BasePrompt
+from backend.adapters import get_adapter
 
 app = FastAPI(title="Z-Image-Turbo Prompt Platform")
 

@@ -55,12 +55,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Planung/01_Overview/README - Produktindex.md",
+                "file": "Planung/README_NEXT_STEPS_EXECUTION.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "README - Produktindex"
+              "title": "README_NEXT_STEPS_EXECUTION"
             }
           }
         ],
@@ -157,7 +157,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Planung/01_Overview/README - Produktindex.md",
+                "file": "Planung/README_NEXT_STEPS_EXECUTION.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -167,7 +167,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Rückverweise auf README - Produktindex"
+              "title": "Rückverweise auf README_NEXT_STEPS_EXECUTION"
             }
           },
           {
@@ -176,12 +176,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Planung/01_Overview/README - Produktindex.md",
+                "file": "Planung/README_NEXT_STEPS_EXECUTION.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Ausgehende Links von README - Produktindex öffnen"
+              "title": "Ausgehende Links von README_NEXT_STEPS_EXECUTION öffnen"
             }
           },
           {
@@ -219,13 +219,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Planung/01_Overview/README - Produktindex.md",
+                "file": "Planung/README_NEXT_STEPS_EXECUTION.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Gliederung von README - Produktindex"
+              "title": "Gliederung von README_NEXT_STEPS_EXECUTION"
             }
           }
         ]
@@ -248,15 +248,27 @@
   },
   "active": "71126d86c4b06117",
   "lastOpenFiles": [
+    "Planung/Ideenspeicher.md",
+    "Planung/README_NEXT_STEPS_EXECUTION.md",
+    "Planung/README_AUTOMATION.md",
+    "Planung/dir_tree.json",
+    "Planung/dir_tree.py",
+    "Planung/Struktur.md",
+    "Planung/README_AUTOMATION_formatiert.md",
+    "Planung/01_Overview/README - Produktindex.md",
+    "Planung/10_issues/week4.json",
+    "Planung/10_issues/week3.json",
+    "Planung/11_scripts/retrofit_keys.py",
+    "Planung/11_scripts/project_sync.py",
+    "Planung/11_scripts/create_labels.py",
+    "Planung/10_issues/created_issues.json",
+    "Planung/11_scripts/bulk_update_issues.py",
+    "Planung/11_scripts/bulk_create_issues.py",
     "Planung/03_Usecases/UC-035 Corporate Design Systemprompt.md",
     "Planung/02_Product/Usecase-Katalog.md",
-    "Planung/01_Overview/README - Produktindex.md",
     "Planung/04_Epics/E-002 Library & MixMatch.md",
-    "Planung_v02.zip",
-    "Planung.zip",
     "Planung/04_Epics/E-004 Productization & Access.md",
     "Planung/03_Usecases/UC-001 Text to BasePrompt.md",
-    "Planung/Ideenspeicher.md",
     "Planung/08_Decisions/ADR-0005 Credits & Limits Modell.md",
     "Planung/08_Decisions/ADR-0004 Merge Rules (Bricks).md",
     "Planung/08_Decisions/ADR-0003 Adapter Interface.md",
@@ -265,23 +277,11 @@
     "Planung/06_Engineering/Error Codes & Telemetry.md",
     "Planung/06_Engineering/API Contract.md",
     "Planung/06_Engineering/Architecture.md",
-    "Planung/Struktur.md",
     "Planung/03_Usecases/UC-034 API Keys (Basic).md",
     "Planung/03_Usecases/UC-028 Credits & Usage.md",
     "Planung/03_Usecases/UC-016 Bricks Mix & Match.md",
     "Planung/03_Usecases/UC-014 Comfy PNG Import.md",
     "Planung/03_Usecases/UC-020 Library Verwaltung.md",
-    "Planung/03_Usecases/UC-019 Login.md",
-    "Planung/03_Usecases/UC-013 Civitai Import.md",
-    "Planung/03_Usecases/UC-011 Keywords → Outline → JSON.md",
-    "Planung/04_Epics/E-003 Inflow & Metadata.md",
-    "Planung/06_Engineering/Runbooks",
-    "Planung/06_Engineering",
-    "Planung/04_Epics",
-    "Planung/08_Decisions",
-    "Planung/03_Usecases",
-    "Planung/02_Product",
-    "Planung/01_Overview",
-    "Planung/05_Requirements/NFR/NFR-xxx ..."
+    "Planung/03_Usecases/UC-019 Login.md"
   ]
 }

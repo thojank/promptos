@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "repo": "thojank/promptos",
+    "default_labels": ["week:2", "epic:E-002", "prio:P0"]
+  },
+  "issues": [
+    {
+      "key": "W2-E002-DB-01",
+      "title": "E-002 DB: Library tables + RLS (styles/environments)",
+      "body": "## Ziel\nPersistente Library für Styles & Environments inkl. Owner-only Zugriff (RLS).\n\n## Scope\n- Tabellen: styles, environments (id, workspace_id/user_id, name, tags[], json, updated_at)\n- RLS Policies: Owner-only CRUD\n- Indexe für Search/Filter (optional)\n\n## AC (Gherkin)\n- Given user A created a style When user B tries to read/update/delete Then access is denied\n- Given valid style payload When insert Then record is stored and returned\n",
+      "labels": ["area:DB"]
+    },
+    {
+      "key": "W2-E002-FE-01",
+      "title": "E-002 FE: Library list views (styles/environments) + states",
+      "body": "## Ziel\nLibrary UI: Listenansicht für Styles/Environments mit Loading/Empty/Error States.\n\n## Scope\n- Styles tab + Environments tab\n- Loading/Empty/Error\n- Basic actions: open item / create button\n\n## AC (Gherkin)\n- Given no items When user opens library Then empty state is shown with CTA\n- Given items exist When user opens library Then list renders with name + tags\n",
+      "labels": ["area:FE"]
+    },
+    {
+      "key": "W2-E002-FE-02",
+      "title": "E-002 FE: Create/Edit/Delete forms for library items",
+      "body": "## Ziel\nCreate/Edit/Delete für Style/Environment Items (Supabase persistiert).\n\n## Scope\n- Form: name + tags + JSON editor (textarea ok) + validation hint\n- Delete confirm\n- Optimistic update optional\n\n## AC (Gherkin)\n- Given user fills valid form When save Then item appears in list and persists after reload\n- Given user deletes item When confirm Then item disappears and is not injectable\n",
+      "labels": ["area:FE"]
+    },
+    {
+      "key": "W2-E002-FE-03",
+      "title": "E-002 FE: Tagging + filter + search + sort",
+      "body": "## Ziel\nItems schnell finden: Tags, Filter, Search, Sort.\n\n## Scope\n- Tag input (multi) + suggestions (optional)\n- Filter by tags\n- Search by name (partial match)\n- Sort: updated desc / alpha\n\n## AC (Gherkin)\n- Given items with tags When filter by tag Then only matching items shown\n- Given search query When typing Then results update with partial matches\n",
+      "labels": ["area:FE"]
+    },
+    {
+      "key": "W2-E002-BE-01",
+      "title": "E-002 BE: Injection helpers + merge conflict detection",
+      "body": "## Ziel\nBricks injizieren: style/env subtree merge + konfliktliste.\n\n## Scope\n- inject_style(basePrompt, styleBrick)\n- inject_environment(basePrompt, envBrick)\n- conflict report: [{ path, current, incoming }]\n- merge policy: user chooses per conflict (no silent overwrite)\n\n## AC (Gherkin)\n- Given basePrompt and incoming brick with overlap When merge Then conflicts list contains overlapping paths\n- Given no overlaps When merge Then merged basePrompt contains incoming fields\n",
+      "labels": ["area:BE"]
+    },
+    {
+      
+      "key": "W2-E002-FE-04", 
+      "title": "E-002 FE: Mix & Match UI (inject + conflict resolution)",
+      "body": "## Ziel\n1-click inject + konfliktauswahl UI.\n\n## Scope\n- Inject buttons on library items\n- Conflict modal/list: Keep current vs Use brick\n- Apply selection updates basePrompt\n\n## AC (Gherkin)\n- Given conflicts exist When injecting Then conflict UI appears\n- Given user chooses resolutions When apply Then basePrompt reflects chosen values\n",
+      "labels": ["area:FE"]
+    },
+    {
+      "key": "W2-E002-FE-05",
+      "title": "E-002 FE: Merge preview (diff) + undo",
+      "body": "## Ziel\nMerge transparenter machen: diff preview + undo snapshot.\n\n## Scope\n- Diff view (added/changed) for merged fields\n- Undo returns previous basePrompt state (session)\n\n## AC (Gherkin)\n- Given merge happened When user opens preview Then changed/added fields are highlighted\n- Given user clicks undo When executed Then basePrompt returns to pre-merge state\n",
+      "labels": ["area:FE"]
+    }
+  ]
+}

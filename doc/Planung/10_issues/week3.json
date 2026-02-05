@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "repo": "thojank/promptos",
+    "default_labels": ["week:3", "epic:E-003", "prio:P0"]
+  },
+  "issues": [
+    {
+      "key": "W3-E003-FE-01",
+      "title": "E-003 FE: Civitai import form (URL + mode auto/prompt/image)",
+      "body": "## Ziel\nCivitai Import UI: User kann eine URL einfügen und Import-Modus wählen (auto/prompt/image).\n\n## Scope\n- Input: URL Feld + Mode selector\n- Basic validation (URL format, allowed domains)\n- Submit triggers backend import endpoint\n\n## Nicht-Ziele\n- Vollständige Civitai OAuth/Account-Linking\n\n## AC (Gherkin)\n- Given a Civitai URL When user submits Then request is sent with selected mode\n- Given invalid URL When submit Then user sees validation message\n",
+      "labels": ["area:FE"]
+    },
+    {
+      "key": "W3-E003-BE-01",
+      "title": "E-003 BE: Civitai import endpoint + fetch + extract (meta/prompt/image)",
+      "body": "## Ziel\nBackend Endpoint, der Civitai URL verarbeitet: Fetch, Parsen, Extraktion (Meta/Prompt/Image je nach Modus).\n\n## Scope\n- Endpoint: POST /import/civitai\n- Mode handling: auto/prompt/image\n- Extraktion: Prompt + basic metadata (model, sampler, steps, seed falls vorhanden)\n- Ergebnis: structured import result (raw + normalized candidates)\n\n## AC (Gherkin)\n- Given valid Civitai URL When mode=prompt Then response includes extracted prompt text\n- Given valid Civitai URL When mode=image Then response includes resolved image asset URL (if available)\n- Given fetch fails When importing Then response includes error_code + correlation_id\n",
+      "labels": ["area:BE"]
+    },
+    {
+      "key": "W3-E003-FE-02",
+      "title": "E-003 FE: Import preview (metadata + extracted BasePrompt candidates)",
+      "body": "## Ziel\nPreview Screen: zeigt Import-Ergebnis (Metadata) + extrahierte BasePrompt-Bausteine zur Übernahme.\n\n## Scope\n- Preview cards: prompt/meta/raw\n- Button: \"Apply to BasePrompt\" (selected parts)\n- Error state & retry\n\n## AC (Gherkin)\n- Given import response When preview loads Then metadata + extracted fields are displayed\n- Given user applies selection When click apply Then basePrompt is updated accordingly\n",
+      "labels": ["area:FE"]
+    },
+    {
+      "key": "W3-E003-BE-02",
+      "title": "E-003 BE: ComfyUI PNG metadata parser (spike: exif/png text chunks)",
+      "body": "## Ziel\nSpike: Metadaten aus ComfyUI PNG extrahieren (EXIF / PNG tEXt/iTXt chunks) und als Rohdaten zurückgeben.\n\n## Scope\n- Parser util (read file bytes)\n- Extract text chunks + common keys\n- Output: raw_metadata + parse_warnings\n\n## AC (Gherkin)\n- Given a ComfyUI PNG When parsed Then metadata keys/values are extracted if present\n- Given PNG without chunks When parsed Then returns empty metadata with warning\n",
+      "labels": ["area:BE"]
+    },
+    {
+      "key": "W3-E003-BE-03",
+      "title": "E-003 BE: Map ComfyUI metadata to BasePrompt bricks",
+      "body": "## Ziel\nMapping: extrahierte ComfyUI-Parameter werden auf BasePrompt-Felder gemappt (Style/Technical/Environment), soweit möglich.\n\n## Scope\n- Mapping table (sampler/steps/cfg/seed/size → technical)\n- Style hints (z.B. prompt tags) → style candidates\n- Output: base_prompt_patch + mapping_report (unmapped keys)\n\n## AC (Gherkin)\n- Given extracted metadata When mapped Then base_prompt_patch contains technical fields\n- Given unknown keys When mapped Then mapping_report lists unmapped entries\n",
+      "labels": ["area:BE"]
+    },
+    {
+      "key": "W3-E003-FE-03",
+      "title": "E-003 FE: Upload UI for ComfyUI PNG + preview mapping result",
+      "body": "## Ziel\nUI: User lädt eine PNG hoch, sieht extrahierte Metadaten + gemappten BasePrompt Patch und kann übernehmen.\n\n## Scope\n- File upload (PNG)\n- Preview: raw metadata + base_prompt_patch\n- Apply button\n\n## AC (Gherkin)\n- Given user uploads PNG When parsing done Then preview shows metadata + patch\n- Given user applies patch When click apply Then basePrompt updates\n",
+      "labels": ["area:FE"]
+    },
+    {
+      "key": "W3-E003-OPS-01",
+      "title": "E-003 Ops/BE: Rate limit + caching strategy for import fetches",
+      "body": "## Ziel\nSchutz vor Abuse und Stabilität: Rate Limits für Import-Endpoints + optionales Caching (URL-based).\n\n## Scope\n- Simple per-IP/per-user limits (config)\n- Retry/backoff guidelines\n- Optional: cache successful URL fetch for short TTL\n\n## AC (Gherkin)\n- Given repeated import calls When limit exceeded Then response returns 429 + error_code\n- Given same URL within TTL When imported Then response may be served from cache\n",
+      "labels": ["area:Ops"]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+Die anderen Applikationen, die jetzt diese Daten nutzen, da führt eine KI ein Interview
+mit dem Product Owner, was bist du, was willst du, was hast du, warum entwickelst du denn
+und wie heißt du denn, wer sind deine Stakeholder und sowas, diese Grunddaten, die jeder wissen
+muss.
+Das machen wir per Audio-Interview und die KI weiß, was sie an Grunddaten braucht und
+das ist einmal hinterlegt für diese ganzen DSGVO und EU AI Act und so weiter, da sind
+die Regeln hinterlegt und dann kann man die notwendigen Fragen, aber wirklich nur die
+notwendigen Fragen stellen, die wichtig sind, um sozusagen die Dokumentation zu füllen,
+weil es ist doch klar, dass wir dokumentieren wollen, dass wir das auch richtig machen wollen,
+aber wir müssen es doch so lean und so einfach machen, wie es geht.
+So, und wenn du das dann gemacht hast, dann kann doch diese KI diese ganzen Formulare
+da ausfüllen und irgendwo eine Datenmark schreiben, sodass das wieder auffindbar ist.

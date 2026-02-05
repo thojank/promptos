@@ -1,0 +1,475 @@
+{
+  "name": "",
+  "path": ".",
+  "type": "directory",
+  "children": [
+    {
+      "name": "01_Overview",
+      "path": "01_Overview",
+      "type": "directory",
+      "children": [
+        {
+          "name": "Roadmap - MVP 4 Wochen.md",
+          "path": "01_Overview/Roadmap - MVP 4 Wochen.md",
+          "type": "file"
+        },
+        {
+          "name": "Glossar.md",
+          "path": "01_Overview/Glossar.md",
+          "type": "file"
+        },
+        {
+          "name": "README - Produktindex.md",
+          "path": "01_Overview/README - Produktindex.md",
+          "type": "file"
+        },
+        {
+          "name": "Links - Quellen & Dokus.md",
+          "path": "01_Overview/Links - Quellen & Dokus.md",
+          "type": "file"
+        }
+      ]
+    },
+    {
+      "name": "07_Delivery",
+      "path": "07_Delivery",
+      "type": "directory",
+      "children": [
+        {
+          "name": "QA Checklists",
+          "path": "07_Delivery/QA Checklists",
+          "type": "directory",
+          "children": [
+            {
+              "name": "README.md",
+              "path": "07_Delivery/QA Checklists/README.md",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "Acceptance Tests (Gherkin)",
+          "path": "07_Delivery/Acceptance Tests (Gherkin)",
+          "type": "directory",
+          "children": [
+            {
+              "name": "README.md",
+              "path": "07_Delivery/Acceptance Tests (Gherkin)/README.md",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "Release Notes",
+          "path": "07_Delivery/Release Notes",
+          "type": "directory",
+          "children": [
+            {
+              "name": "README.md",
+              "path": "07_Delivery/Release Notes/README.md",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "GitHub Issue Drafts",
+          "path": "07_Delivery/GitHub Issue Drafts",
+          "type": "directory",
+          "children": [
+            {
+              "name": "README.md",
+              "path": "07_Delivery/GitHub Issue Drafts/README.md",
+              "type": "file"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Struktur.md",
+      "path": "Struktur.md",
+      "type": "file"
+    },
+    {
+      "name": "05_Requirements",
+      "path": "05_Requirements",
+      "type": "directory",
+      "children": [
+        {
+          "name": "NFR",
+          "path": "05_Requirements/NFR",
+          "type": "directory",
+          "children": [
+            {
+              "name": "NFR-001 Rate limiting.md",
+              "path": "05_Requirements/NFR/NFR-001 Rate limiting.md",
+              "type": "file"
+            },
+            {
+              "name": "NFR-xxx ...",
+              "path": "05_Requirements/NFR/NFR-xxx ...",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "Integrations",
+          "path": "05_Requirements/Integrations",
+          "type": "directory",
+          "children": [
+            {
+              "name": "Adapter - Flux.md",
+              "path": "05_Requirements/Integrations/Adapter - Flux.md",
+              "type": "file"
+            },
+            {
+              "name": "ComfyUI.md",
+              "path": "05_Requirements/Integrations/ComfyUI.md",
+              "type": "file"
+            },
+            {
+              "name": "Adapter - Banana.md",
+              "path": "05_Requirements/Integrations/Adapter - Banana.md",
+              "type": "file"
+            },
+            {
+              "name": "Civitai.md",
+              "path": "05_Requirements/Integrations/Civitai.md",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "FR",
+          "path": "05_Requirements/FR",
+          "type": "directory",
+          "children": [
+            {
+              "name": "FR-xxx ...",
+              "path": "05_Requirements/FR/FR-xxx ...",
+              "type": "file"
+            },
+            {
+              "name": "FR-001 BasePrompt Validation.md",
+              "path": "05_Requirements/FR/FR-001 BasePrompt Validation.md",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "Data Model",
+          "path": "05_Requirements/Data Model",
+          "type": "directory",
+          "children": [
+            {
+              "name": "Schemas - BasePrompt.md",
+              "path": "05_Requirements/Data Model/Schemas - BasePrompt.md",
+              "type": "file"
+            },
+            {
+              "name": "Entities.md",
+              "path": "05_Requirements/Data Model/Entities.md",
+              "type": "file"
+            },
+            {
+              "name": "Tables - Supabase.md",
+              "path": "05_Requirements/Data Model/Tables - Supabase.md",
+              "type": "file"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "00_Inbox",
+      "path": "00_Inbox",
+      "type": "directory",
+      "children": [
+        {
+          "name": "_Schnipsel.md",
+          "path": "00_Inbox/_Schnipsel.md",
+          "type": "file"
+        },
+        {
+          "name": "Meeting-Notes",
+          "path": "00_Inbox/Meeting-Notes",
+          "type": "directory",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "09_Reference",
+      "path": "09_Reference",
+      "type": "directory",
+      "children": [
+        {
+          "name": "Snippets - Prompt Rules.md",
+          "path": "09_Reference/Snippets - Prompt Rules.md",
+          "type": "file"
+        },
+        {
+          "name": "Imported Docs",
+          "path": "09_Reference/Imported Docs",
+          "type": "directory",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "06_Engineering",
+      "path": "06_Engineering",
+      "type": "directory",
+      "children": [
+        {
+          "name": "Architecture.md",
+          "path": "06_Engineering/Architecture.md",
+          "type": "file"
+        },
+        {
+          "name": "Error Codes & Telemetry.md",
+          "path": "06_Engineering/Error Codes & Telemetry.md",
+          "type": "file"
+        },
+        {
+          "name": "API Contract.md",
+          "path": "06_Engineering/API Contract.md",
+          "type": "file"
+        },
+        {
+          "name": "Runbooks",
+          "path": "06_Engineering/Runbooks",
+          "type": "directory",
+          "children": []
+        },
+        {
+          "name": "Test Strategy.md",
+          "path": "06_Engineering/Test Strategy.md",
+          "type": "file"
+        }
+      ]
+    },
+    {
+      "name": "02_Product",
+      "path": "02_Product",
+      "type": "directory",
+      "children": [
+        {
+          "name": "Zielbild & Scope.md",
+          "path": "02_Product/Zielbild & Scope.md",
+          "type": "file"
+        },
+        {
+          "name": "Personas & JTBD.md",
+          "path": "02_Product/Personas & JTBD.md",
+          "type": "file"
+        },
+        {
+          "name": "KPIs & Analytics.md",
+          "path": "02_Product/KPIs & Analytics.md",
+          "type": "file"
+        },
+        {
+          "name": "Customer Journey.md",
+          "path": "02_Product/Customer Journey.md",
+          "type": "file"
+        },
+        {
+          "name": "Usecase-Katalog.md",
+          "path": "02_Product/Usecase-Katalog.md",
+          "type": "file"
+        }
+      ]
+    },
+    {
+      "name": "03_Usecases",
+      "path": "03_Usecases",
+      "type": "directory",
+      "children": [
+        {
+          "name": "UC-011 Keywords → Outline → JSON.md",
+          "path": "03_Usecases/UC-011 Keywords → Outline → JSON.md",
+          "type": "file"
+        },
+        {
+          "name": "UC-020 Library Verwaltung.md",
+          "path": "03_Usecases/UC-020 Library Verwaltung.md",
+          "type": "file"
+        },
+        {
+          "name": "UC-019 Login.md",
+          "path": "03_Usecases/UC-019 Login.md",
+          "type": "file"
+        },
+        {
+          "name": "UC-034 API Keys (Basic).md",
+          "path": "03_Usecases/UC-034 API Keys (Basic).md",
+          "type": "file"
+        },
+        {
+          "name": "UC-016 Bricks Mix & Match.md",
+          "path": "03_Usecases/UC-016 Bricks Mix & Match.md",
+          "type": "file"
+        },
+        {
+          "name": "UC-035 Corporate Design Systemprompt.md",
+          "path": "03_Usecases/UC-035 Corporate Design Systemprompt.md",
+          "type": "file"
+        },
+        {
+          "name": "UC-014 Comfy PNG Import.md",
+          "path": "03_Usecases/UC-014 Comfy PNG Import.md",
+          "type": "file"
+        },
+        {
+          "name": "UC-001 Text to BasePrompt.md",
+          "path": "03_Usecases/UC-001 Text to BasePrompt.md",
+          "type": "file"
+        },
+        {
+          "name": "UC-028 Credits & Usage.md",
+          "path": "03_Usecases/UC-028 Credits & Usage.md",
+          "type": "file"
+        },
+        {
+          "name": "UC-013 Civitai Import.md",
+          "path": "03_Usecases/UC-013 Civitai Import.md",
+          "type": "file"
+        }
+      ]
+    },
+    {
+      "name": "README_AUTOMATION.md",
+      "path": "README_AUTOMATION.md",
+      "type": "file"
+    },
+    {
+      "name": "Ideenspeicher.md",
+      "path": "Ideenspeicher.md",
+      "type": "file"
+    },
+    {
+      "name": "dir_tree.py",
+      "path": "dir_tree.py",
+      "type": "file"
+    },
+    {
+      "name": "08_Decisions",
+      "path": "08_Decisions",
+      "type": "directory",
+      "children": [
+        {
+          "name": "ADR-0002 Credit Model.md",
+          "path": "08_Decisions/ADR-0002 Credit Model.md",
+          "type": "file"
+        },
+        {
+          "name": "ADR-0003 Adapter Interface.md",
+          "path": "08_Decisions/ADR-0003 Adapter Interface.md",
+          "type": "file"
+        },
+        {
+          "name": "ADR-0005 Credits & Limits Modell.md",
+          "path": "08_Decisions/ADR-0005 Credits & Limits Modell.md",
+          "type": "file"
+        },
+        {
+          "name": "ADR-0004 Merge Rules (Bricks).md",
+          "path": "08_Decisions/ADR-0004 Merge Rules (Bricks).md",
+          "type": "file"
+        },
+        {
+          "name": "ADR-0001 BasePrompt Schema Versioning.md",
+          "path": "08_Decisions/ADR-0001 BasePrompt Schema Versioning.md",
+          "type": "file"
+        }
+      ]
+    },
+    {
+      "name": "04_Epics",
+      "path": "04_Epics",
+      "type": "directory",
+      "children": [
+        {
+          "name": "E-002 Library & MixMatch.md",
+          "path": "04_Epics/E-002 Library & MixMatch.md",
+          "type": "file"
+        },
+        {
+          "name": "E-003 Inflow & Metadata.md",
+          "path": "04_Epics/E-003 Inflow & Metadata.md",
+          "type": "file"
+        },
+        {
+          "name": "E-004 Productization & Access.md",
+          "path": "04_Epics/E-004 Productization & Access.md",
+          "type": "file"
+        },
+        {
+          "name": "E-001 Universal Orchestrator.md",
+          "path": "04_Epics/E-001 Universal Orchestrator.md",
+          "type": "file"
+        }
+      ]
+    },
+    {
+      "name": "10_issues",
+      "path": "10_issues",
+      "type": "directory",
+      "children": [
+        {
+          "name": "week4.json",
+          "path": "10_issues/week4.json",
+          "type": "file"
+        },
+        {
+          "name": "week3.json",
+          "path": "10_issues/week3.json",
+          "type": "file"
+        },
+        {
+          "name": "week2.json",
+          "path": "10_issues/week2.json",
+          "type": "file"
+        },
+        {
+          "name": "created_issues.json",
+          "path": "10_issues/created_issues.json",
+          "type": "file"
+        }
+      ]
+    },
+    {
+      "name": "11_scripts",
+      "path": "11_scripts",
+      "type": "directory",
+      "children": [
+        {
+          "name": "bulk_update_issues.py",
+          "path": "11_scripts/bulk_update_issues.py",
+          "type": "file"
+        },
+        {
+          "name": "retrofit_keys.py",
+          "path": "11_scripts/retrofit_keys.py",
+          "type": "file"
+        },
+        {
+          "name": "bulk_create_issues.py",
+          "path": "11_scripts/bulk_create_issues.py",
+          "type": "file"
+        },
+        {
+          "name": "project_sync.py",
+          "path": "11_scripts/project_sync.py",
+          "type": "file"
+        },
+        {
+          "name": "create_labels.py",
+          "path": "11_scripts/create_labels.py",
+          "type": "file"
+        }
+      ]
+    }
+  ]
+}

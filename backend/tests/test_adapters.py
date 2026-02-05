@@ -1,7 +1,7 @@
 import unittest
 
-from adapters import FluxAdapter, BananaAdapter, get_adapter
-from models import BasePrompt, Subject, Environment, Style, TechSpecs
+from backend.adapters import FluxAdapter, BananaAdapter, get_adapter
+from backend.models import BasePrompt, Subject, Environment, Style, TechSpecs
 
 
 class AdapterTests(unittest.TestCase):

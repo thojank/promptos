@@ -15,7 +15,7 @@ import google.generativeai as genai
 
 load_dotenv()
 
-from models import (
+from backend.models import (
     ZImageTurboPrompt,
     BasePrompt,
     CharacterProfile,
@@ -26,7 +26,7 @@ from models import (
     validate_no_forbidden_words,
     extract_forbidden_words
 )
-from system_prompts import get_system_prompt
+from backend.system_prompts import get_system_prompt
 
 
 class GeminiPromptGenerator:
