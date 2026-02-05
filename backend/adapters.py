@@ -3,7 +3,7 @@ Adapter-Pattern: Universal BasePrompt → modell-spezifische Formate
 """
 
 from typing import Dict, Any
-from models import BasePrompt
+from backend.models import BasePrompt
 
 
 class BaseAdapter:

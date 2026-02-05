@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "repo": "thojank/promptos",
+    "source": "/Users/thorstenjankowski/n8n-compose/310126_prompt-platform/doc/Planung/10_issues/week4.json",
+    "created_count": 6,
+    "error_count": 0
+  },
+  "created": [
+    {
+      "title": "E-004 BE: Plans/Limits model + enforcement middleware",
+      "number": 23,
+      "url": "https://github.com/thojank/promptos/issues/23",
+      "labels": [
+        "area:BE",
+        "epic:E-004",
+        "prio:P0",
+        "week:4"
+      ]
+    },
+    {
+      "title": "E-004 DB: Credits ledger + balance (atomic deduction)",
+      "number": 24,
+      "url": "https://github.com/thojank/promptos/issues/24",
+      "labels": [
+        "area:DB",
+        "epic:E-004",
+        "prio:P0",
+        "week:4"
+      ]
+    },
+    {
+      "title": "E-004 FE: Usage/Credits UI (balance + blocking message)",
+      "number": 25,
+      "url": "https://github.com/thojank/promptos/issues/25",
+      "labels": [
+        "area:FE",
+        "epic:E-004",
+        "prio:P0",
+        "week:4"
+      ]
+    },
+    {
+      "title": "E-004 BE: API keys CRUD + auth middleware",
+      "number": 26,
+      "url": "https://github.com/thojank/promptos/issues/26",
+      "labels": [
+        "area:BE",
+        "epic:E-004",
+        "prio:P0",
+        "week:4"
+      ]
+    },
+    {
+      "title": "E-004 Ops/BE: Structured logs + minimal error telemetry (correlation_id)",
+      "number": 27,
+      "url": "https://github.com/thojank/promptos/issues/27",
+      "labels": [
+        "area:Ops",
+        "epic:E-004",
+        "prio:P0",
+        "week:4"
+      ]
+    },
+    {
+      "title": "E-004 Ops/BE: Rate limiting strategy (adapter endpoints + imports)",
+      "number": 28,
+      "url": "https://github.com/thojank/promptos/issues/28",
+      "labels": [
+        "area:Ops",
+        "epic:E-004",
+        "prio:P0",
+        "week:4"
+      ]
+    }
+  ],
+  "errors": []
+}

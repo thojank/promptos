@@ -1,0 +1,44 @@
+{
+  "meta": {
+    "repo": "thojank/promptos",
+    "default_labels": ["week:4", "epic:E-004", "prio:P0"]
+  },
+  "issues": [
+    {
+      "key": "W4-E004-BE-01",
+      "title": "E-004 BE: Plans/Limits model + enforcement middleware",
+      "body": "## Ziel\nPlan-/Limit-Modell (Explorer/Creator/Studio) definieren und serverseitig enforced.\n\n## Scope\n- Plan config (limits per feature/endpoint)\n- Middleware: reads user plan, blocks when exceeded\n- Standard error response (error_code + correlation_id)\n\n## AC (Gherkin)\n- Given user on Explorer When exceeds limit Then request is blocked with clear message\n- Given user on Studio When within limits Then request proceeds\n",
+      "labels": ["area:BE"]
+    },
+    {
+      "key": "W4-E004-DB-01",
+      "title": "E-004 DB: Credits ledger + balance (atomic deduction)",
+      "body": "## Ziel\nCredits: Ledger + Balance, sichere (atomare) Abbuchung pro request.\n\n## Scope\n- Tables: credits_ledger, credits_balance\n- Atomic transaction for deduction\n- Cost mapping config (per adapter/provider)\n\n## AC (Gherkin)\n- Given sufficient balance When request consumes credits Then ledger entry created and balance reduced\n- Given insufficient balance When request Then blocked with error_code=INSUFFICIENT_CREDITS\n",
+      "labels": ["area:DB"]
+    },
+    {
+      "key": "W4-E004-FE-01",
+      "title": "E-004 FE: Usage/Credits UI (balance + blocking message)",
+      "body": "## Ziel\nUI zeigt Credits/Budget an und erklärt Blockierungen verständlich.\n\n## Scope\n- Display current balance\n- Show cost hints (optional)\n- Empty/blocked state for insufficient credits\n\n## AC (Gherkin)\n- Given user opens app When balance available Then UI shows credits\n- Given insufficient credits When user tries generate Then UI shows blocking message and guidance\n",
+      "labels": ["area:FE"]
+    },
+    {
+      "key": "W4-E004-BE-02",
+      "title": "E-004 BE: API keys CRUD + auth middleware",
+      "body": "## Ziel\nAPI Keys: erstellen/listen/revoke + Middleware Auth für API access.\n\n## Scope\n- Create key (hashed storage)\n- List keys (masked)\n- Revoke key\n- Middleware: validate key, attach principal\n\n## AC (Gherkin)\n- Given valid api key When calling endpoint Then request is authorized\n- Given revoked key When calling endpoint Then request is denied\n",
+      "labels": ["area:BE"]
+    },
+    {
+      "key": "W4-E004-OPS-01",
+      "title": "E-004 Ops/BE: Structured logs + minimal error telemetry (correlation_id)",
+      "body": "## Ziel\nMonitoring/Hardening: strukturierte Logs, correlation_id in jedem Request, minimal error telemetry.\n\n## Scope\n- correlation_id generation/propagation\n- structured logs (json)\n- capture: error_code, latency, adapter, status\n\n## AC (Gherkin)\n- Given any request When processed Then response includes correlation_id\n- Given provider failure When occurs Then logs contain error_code and adapter context\n",
+      "labels": ["area:Ops"]
+    },
+    {
+      "key": "W4-E004-OPS-02",
+      "title": "E-004 Ops/BE: Rate limiting strategy (adapter endpoints + imports)",
+      "body": "## Ziel\nRate limiting Strategie für Adapter- und Import-Endpoints definieren und implementieren.\n\n## Scope\n- per-key/per-user throttling\n- sensible defaults + config\n- return 429 + retry-after (optional)\n\n## AC (Gherkin)\n- Given too many requests When rate limit exceeded Then returns 429 with error_code\n- Given normal usage When under limit Then no throttle applied\n",
+      "labels": ["area:Ops"]
+    }
+  ]
+}
