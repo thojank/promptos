@@ -1,17 +1,25 @@
+
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
+import { createSupabaseServerClient } from "@/lib/supabaseServer";
+import dynamic from "next/dynamic";
 
 export const metadata: Metadata = {
   title: "Z-Image-Turbo Prompt Platform",
   description: "Modular prompt engineering for Z-Image-Turbo photorealistic AI",
 };
 
-export default function RootLayout({
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const supabase = createSupabaseServerClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  const AuthNav = dynamic(() => import("@/components/AuthNav"), { ssr: false });
+
   return (
     <html lang="en">
       <head>
@@ -38,9 +46,7 @@ export default function RootLayout({
               <Link href="/environments" className="rounded-full px-3 py-1.5 text-zinc-700 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800 transition">
                 Environments
               </Link>
-              <Link href="/login" className="rounded-full px-3 py-1.5 text-zinc-700 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800 transition">
-                Login
-              </Link>
+              <AuthNav user={user} />
             </nav>
           </div>
         </header>
