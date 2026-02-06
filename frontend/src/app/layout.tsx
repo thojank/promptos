@@ -46,6 +46,11 @@ export default async function RootLayout({
               <Link href="/environments" className="rounded-full px-3 py-1.5 text-zinc-700 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800 transition">
                 Environments
               </Link>
+              {user ? (
+                <Link href="/library" className="rounded-full px-3 py-1.5 text-zinc-700 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800 transition">
+                  Library
+                </Link>
+              ) : null}
               <AuthNav user={user} />
             </nav>
           </div>
