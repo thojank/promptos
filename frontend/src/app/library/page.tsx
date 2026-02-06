@@ -34,11 +34,12 @@ export default async function LibraryListPage() {
       .order("updated_at", { ascending: false }),
   ]);
 
-  let error: string | null = null;
+
   if (stylesRes.error) {
-    error = "Fehler beim Laden der Styles: " + stylesRes.error.message;
-  } else if (envRes.error) {
-    error = "Fehler beim Laden der Environments: " + envRes.error.message;
+    throw new Error("Fehler beim Laden der Styles: " + stylesRes.error.message);
+  }
+  if (envRes.error) {
+    throw new Error("Fehler beim Laden der Environments: " + envRes.error.message);
   }
 
   const styles: LibraryItem[] = stylesRes.data || [];
@@ -47,76 +48,71 @@ export default async function LibraryListPage() {
   return (
     <div className="max-w-3xl mx-auto py-10 px-4">
       <h1 className="text-2xl font-bold mb-8">Library Übersicht</h1>
-      {error && <div className="text-red-600">{error}</div>}
-      {!error && (
-        <>
-          {/* Styles Section */}
-          <section className="mb-10">
-            <h2 className="text-xl font-semibold mb-3">Styles</h2>
-            {styles.length === 0 && (
-              <div className="text-gray-400">Keine Styles gefunden.</div>
-            )}
-            {styles.length > 0 && (
-              <ul className="space-y-3">
-                {styles.map((item) => (
-                  <li
-                    key={item.id}
-                    className="border rounded p-4 bg-white dark:bg-zinc-800 shadow-sm"
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="font-bold text-lg">{item.title}</span>
-                      {item.is_public && (
-                        <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded ml-2">
-                          Public
-                        </span>
-                      )}
-                    </div>
-                    {item.description && (
-                      <div className="text-gray-500 text-sm mt-1">{item.description}</div>
-                    )}
-                    <div className="text-xs text-gray-400 mt-2">
-                      Zuletzt geändert: {new Date(item.updated_at).toLocaleString()}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </section>
+      {/* Styles Section */}
+      <section className="mb-10">
+        <h2 className="text-xl font-semibold mb-3">Styles</h2>
+        {styles.length === 0 && (
+          <div className="text-gray-400">Keine Styles gefunden.</div>
+        )}
+        {styles.length > 0 && (
+          <ul className="space-y-3">
+            {styles.map((item) => (
+              <li
+                key={item.id}
+                className="border rounded p-4 bg-white dark:bg-zinc-800 shadow-sm"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-lg">{item.title}</span>
+                  {item.is_public && (
+                    <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded ml-2">
+                      Public
+                    </span>
+                  )}
+                </div>
+                {item.description && (
+                  <div className="text-gray-500 text-sm mt-1">{item.description}</div>
+                )}
+                <div className="text-xs text-gray-400 mt-2">
+                  Zuletzt geändert: {new Date(item.updated_at).toLocaleString()}
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
 
-          {/* Environments Section */}
-          <section>
-            <h2 className="text-xl font-semibold mb-3">Environments</h2>
-            {environments.length === 0 && (
-              <div className="text-gray-400">Keine Environments gefunden.</div>
-            )}
-            {environments.length > 0 && (
-              <ul className="space-y-3">
-                {environments.map((item) => (
-                  <li
-                    key={item.id}
-                    className="border rounded p-4 bg-white dark:bg-zinc-800 shadow-sm"
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="font-bold text-lg">{item.title}</span>
-                      {item.is_public && (
-                        <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded ml-2">
-                          Public
-                        </span>
-                      )}
-                    </div>
-                    {item.description && (
-                      <div className="text-gray-500 text-sm mt-1">{item.description}</div>
-                    )}
-                    <div className="text-xs text-gray-400 mt-2">
-                      Zuletzt geändert: {new Date(item.updated_at).toLocaleString()}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </section>
-        </>
-      )}
+      {/* Environments Section */}
+      <section>
+        <h2 className="text-xl font-semibold mb-3">Environments</h2>
+        {environments.length === 0 && (
+          <div className="text-gray-400">Keine Environments gefunden.</div>
+        )}
+        {environments.length > 0 && (
+          <ul className="space-y-3">
+            {environments.map((item) => (
+              <li
+                key={item.id}
+                className="border rounded p-4 bg-white dark:bg-zinc-800 shadow-sm"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-bold text-lg">{item.title}</span>
+                  {item.is_public && (
+                    <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded ml-2">
+                      Public
+                    </span>
+                  )}
+                </div>
+                {item.description && (
+                  <div className="text-gray-500 text-sm mt-1">{item.description}</div>
+                )}
+                <div className="text-xs text-gray-400 mt-2">
+                  Zuletzt geändert: {new Date(item.updated_at).toLocaleString()}
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
     </div>
   );
 }
