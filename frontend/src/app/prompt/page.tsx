@@ -6,7 +6,7 @@ import {
   hasDefaultApplied,
   getValidationStatus,
   groupBasePromptSections,
-} from "@/lib/promptHelpers";
+} from "../../lib/promptHelpers";
 
 type ModelType = "z-image-turbo" | "banana-pro";
 
