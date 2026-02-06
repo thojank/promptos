@@ -1,3 +1,9 @@
 - Systemprompt für corporate design (grünes CD)
 - Kimara andock punkt to kimara
 - alles was meine plattform macht ist der input für kimara: modulare bausteine für character, upscaling, video, etc.
+- Charakter anlegen: dropdown vorgegebene werte
+- Character anlegen wie bei higgsfield (avatar)
+- Charakter anlegen: AI Vorschlag (mit stichworten, oder einfach ins blaue oder basierend auf einer story)
+- beispielprompts auf der prompt seite
+- Universal BasePrompt: Erklärung ins UI wofür das gut ist/ Adapter Output: was ist das?
+- generell mehr erklärungen im ui
