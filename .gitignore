@@ -48,3 +48,4 @@ node_modules/
 *.log
 npm-debug.log*
 doc/.obsidian/workspace.json
+!frontend/src/lib/**
