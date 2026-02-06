@@ -10,7 +10,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+/lib/
 lib64/
 parts/
 sdist/
@@ -48,3 +48,4 @@ node_modules/
 *.log
 npm-debug.log*
 doc/.obsidian/workspace.json
+!frontend/src/lib/**
