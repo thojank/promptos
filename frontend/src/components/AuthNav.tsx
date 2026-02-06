@@ -6,7 +6,7 @@ import { useState } from "react";
 export function getInitials(user: any): string {
   if (user?.user_metadata?.full_name) {
     const words = user.user_metadata.full_name.split(" ").filter(Boolean);
-    return words.slice(0, 2).map((w) => w[0].toUpperCase()).join("");
+    return words.slice(0, 2).map((w: string) => w[0].toUpperCase()).join("");
   }
   if (user?.email) return user.email[0].toUpperCase();
   return "?";
