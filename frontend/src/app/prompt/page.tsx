@@ -6,7 +6,7 @@ import {
   hasDefaultApplied,
   getValidationStatus,
   groupBasePromptSections,
-} from "../../lib/promptHelpers";
+} from "@/lib/promptHelpers";
 
 type ModelType = "z-image-turbo" | "banana-pro";
 
@@ -273,7 +273,7 @@ export default function PromptGenerator() {
                       <div className="border rounded p-4 bg-zinc-50 dark:bg-zinc-700">
                         <h3 className="font-bold text-lg mb-3">👤 Subjekt/e</h3>
                         <div className="space-y-3">
-                          {sections.subjects.map((subject, idx) => (
+                          {sections.subjects.map((subject: any, idx: number) => (
                             <div
                               key={idx}
                               className="border-l-4 border-zinc-300 dark:border-zinc-600 pl-3"
