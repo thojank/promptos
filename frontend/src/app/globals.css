@@ -1,10 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 /* Headlines: Scope One */
 .headline-scope {
   font-family: "Scope One", serif;
   font-weight: 400;
   font-style: normal;
 }
-@import "tailwindcss";
 
 :root {
   --background: #ffffff;
