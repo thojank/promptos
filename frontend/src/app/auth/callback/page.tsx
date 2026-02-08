@@ -15,9 +15,13 @@ export default function AuthCallbackPage() {
   }, [router]);
 
   return (
-    <div className="max-w-xl mx-auto py-10 px-4">
-      <h1 className="text-xl font-semibold">Login wird abgeschlossen…</h1>
-      <p className="text-zinc-500 mt-2">Du wirst gleich weitergeleitet.</p>
+    <div className="min-h-screen bg-base-200 py-10 px-4">
+      <div className="max-w-xl mx-auto card bg-base-100 shadow">
+        <div className="card-body">
+          <h1 className="text-xl font-semibold">Login wird abgeschlossen...</h1>
+          <p className="text-base-content/70">Du wirst gleich weitergeleitet.</p>
+        </div>
+      </div>
     </div>
   );
 }

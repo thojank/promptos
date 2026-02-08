@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
+import { Input, Select, Button } from "@/components/ui";
 
 interface LibraryControlsProps {
   availableTags: string[];
@@ -53,31 +54,23 @@ export default function LibraryControls({ availableTags }: LibraryControlsProps)
   return (
     <div className="mb-6 space-y-4">
       {/* Search Input */}
-      <div>
-        <label htmlFor="search" className="block text-sm font-medium mb-2">
-          Suche
-        </label>
-        <input
-          id="search"
-          type="text"
-          value={searchTerm}
-          onChange={(e) => handleSearchChange(e.target.value)}
-          placeholder="Titel oder Beschreibung durchsuchen..."
-          className="w-full px-4 py-2 border rounded-lg bg-white dark:bg-zinc-800 border-gray-300 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
+      <Input
+        id="search"
+        type="text"
+        label="Suche"
+        value={searchTerm}
+        onChange={(e) => handleSearchChange(e.target.value)}
+        placeholder="Titel oder Beschreibung durchsuchen..."
+      />
 
       <div className="flex flex-col sm:flex-row gap-4">
         {/* Tag Filter */}
         <div className="flex-1">
-          <label htmlFor="tag" className="block text-sm font-medium mb-2">
-            Tag Filter
-          </label>
-          <select
+          <Select
             id="tag"
+            label="Tag Filter"
             value={selectedTag}
             onChange={(e) => handleTagChange(e.target.value)}
-            className="w-full px-4 py-2 border rounded-lg bg-white dark:bg-zinc-800 border-gray-300 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="">Alle Tags</option>
             {availableTags.map((tag) => (
@@ -85,38 +78,32 @@ export default function LibraryControls({ availableTags }: LibraryControlsProps)
                 {tag}
               </option>
             ))}
-          </select>
+          </Select>
         </div>
 
         {/* Sort Dropdown */}
         <div className="flex-1">
-          <label htmlFor="sort" className="block text-sm font-medium mb-2">
-            Sortierung
-          </label>
-          <select
+          <Select
             id="sort"
+            label="Sortierung"
             value={sortOption}
             onChange={(e) => handleSortChange(e.target.value)}
-            className="w-full px-4 py-2 border rounded-lg bg-white dark:bg-zinc-800 border-gray-300 dark:border-zinc-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="updated_desc">Zuletzt geändert (neueste zuerst)</option>
             <option value="updated_asc">Zuletzt geändert (älteste zuerst)</option>
             <option value="title_asc">Titel (A-Z)</option>
             <option value="title_desc">Titel (Z-A)</option>
-          </select>
+            <option value="created_desc">Erstellt (neueste zuerst)</option>
+            <option value="created_asc">Erstellt (älteste zuerst)</option>
+          </Select>
         </div>
       </div>
 
       {/* Reset Button */}
       {hasFilters && (
-        <div>
-          <button
-            onClick={handleReset}
-            className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
-          >
-            Filter zurücksetzen
-          </button>
-        </div>
+        <Button onClick={handleReset} variant="outline" className="w-full">
+          Filter zurücksetzen
+        </Button>
       )}
     </div>
   );

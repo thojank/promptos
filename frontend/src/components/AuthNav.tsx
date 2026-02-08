@@ -20,7 +20,7 @@ export default function AuthNav({ user }: { user: any }) {
     return (
       <a
         href="/login"
-        className="rounded-full px-3 py-1.5 text-zinc-700 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800 transition"
+        className="btn btn-ghost btn-sm"
       >
         Login
       </a>
@@ -31,36 +31,42 @@ export default function AuthNav({ user }: { user: any }) {
   const initials = getInitials(user);
 
   return (
-    <div className="relative">
+    <div className="dropdown dropdown-end">
       <button
-        className="flex items-center justify-center w-9 h-9 rounded-full bg-zinc-200 dark:bg-zinc-700 text-zinc-800 dark:text-zinc-100 font-bold text-base focus:outline-none"
+        className="btn btn-circle btn-ghost avatar"
         onClick={() => setOpen((v) => !v)}
         title={user.email}
+        type="button"
       >
         {avatarUrl ? (
-          <img
-            src={avatarUrl}
-            alt="Avatar"
-            className="w-9 h-9 rounded-full object-cover"
-          />
+          <div className="w-9 rounded-full">
+            <img
+              src={avatarUrl}
+              alt="Avatar"
+              className="w-9 h-9 rounded-full object-cover"
+            />
+          </div>
         ) : (
-          <span>{initials}</span>
+          <span className="font-bold">{initials}</span>
         )}
       </button>
       {open && (
-        <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded shadow-lg z-50">
-          <div className="px-4 py-2 text-xs text-zinc-500 truncate">{user.email}</div>
-          <button
-            className="w-full text-left px-4 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-            onClick={async () => {
+        <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-48">
+          <li>
+            <span className="text-xs opacity-70 truncate">{user.email}</span>
+          </li>
+          <li>
+            <button
+              onClick={async () => {
                 await supabase.auth.signOut();
                 setOpen(false);
                 window.location.href = "/login";
-            }}
-          >
-            Logout
-          </button>
-        </div>
+              }}
+            >
+              Logout
+            </button>
+          </li>
+        </ul>
       )}
     </div>
   );

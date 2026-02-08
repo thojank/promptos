@@ -8,18 +8,20 @@ export default function Error({
   reset: () => void;
 }) {
   return (
-    <div className="max-w-3xl mx-auto py-10 px-4">
-      <h1 className="text-2xl font-bold mb-4">Library konnte nicht geladen werden</h1>
-      <p className="text-zinc-600 dark:text-zinc-300 mb-6">
-        {error?.message || "Unbekannter Fehler."}
-      </p>
+    <div className="min-h-screen bg-base-200 py-10 px-4">
+      <div className="max-w-3xl mx-auto">
+        <h1 className="text-2xl font-bold mb-4">Library konnte nicht geladen werden</h1>
+        <div className="alert alert-error mb-6">
+          <span>{error?.message || "Unbekannter Fehler."}</span>
+        </div>
 
-      <button
-        onClick={() => reset()}
-        className="rounded bg-zinc-900 text-white px-4 py-2 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200 transition"
-      >
-        Nochmal versuchen
-      </button>
+        <button
+          onClick={() => reset()}
+          className="btn btn-primary"
+        >
+          Nochmal versuchen
+        </button>
+      </div>
     </div>
   );
 }

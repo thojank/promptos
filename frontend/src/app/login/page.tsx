@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabaseBrowser";
+import { Button, Input, Badge } from "@/components/ui";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -68,93 +69,46 @@ export default function LoginPage() {
   return (
     <div className="mx-auto max-w-md p-6">
       {userEmail && (
-        <div className="mb-4 rounded-md border border-green-300 bg-green-50 p-3 text-sm text-green-800 dark:border-green-900 dark:bg-green-950/40 dark:text-green-200">
-          Eingeloggt als <b>{userEmail}</b>
+        <div className="mb-4">
+          <Badge color="success">Eingeloggt als <b>{userEmail}</b></Badge>
           <div className="mt-2 flex gap-2">
-            <button
-              type="button"
-              className="rounded-md bg-green-600 px-3 py-2 text-xs font-medium text-white hover:bg-green-700"
-              onClick={() => {
-                router.push("/library");
-                router.refresh();
-              }}
-            >
-              Weiter zu Library
-            </button>
-            <button
-              type="button"
-              className="rounded-md px-3 py-2 text-xs hover:bg-zinc-100 dark:hover:bg-zinc-800"
-              onClick={async () => {
-                 await supabase.auth.signOut();
-                 setUserEmail(null);
-                 router.push("/login");
-                 router.refresh();
-              }}
-            >
-              Logout
-            </button>
+            <Button size="sm" variant="primary" onClick={() => { router.push("/library"); router.refresh(); }}>Weiter zu Library</Button>
+            <Button size="sm" variant="secondary" onClick={async () => { await supabase.auth.signOut(); setUserEmail(null); router.push("/login"); router.refresh(); }}>Logout</Button>
           </div>
         </div>
       )}
 
       <h1 className="mb-2 text-2xl font-semibold">Login</h1>
-      <p className="mb-6 text-sm text-zinc-500">
+      <p className="mb-6 text-sm text-base-content/70">
         {mode === "login" ? "Melde dich an." : "Account erstellen."}
       </p>
 
-      <button
-        onClick={signInWithGoogle}
-        className="mb-6 w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
-      >
-        Mit Google anmelden
-      </button>
+      <Button variant="primary" size="md" className="mb-6 w-full" onClick={signInWithGoogle}>Mit Google anmelden</Button>
 
       <form onSubmit={onSubmit} className="space-y-4">
-        <div>
-          <label className="mb-1 block text-sm">Email</label>
-          <input
-            className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-900"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            autoComplete="email"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="mb-1 block text-sm">Password</label>
-          <input
-            className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-900"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            autoComplete={mode === "login" ? "current-password" : "new-password"}
-            required
-          />
-        </div>
-
-        {error && (
-          <div className="rounded-md border border-red-300 bg-red-50 p-3 text-sm text-red-700 dark:border-red-900 dark:bg-red-950/40 dark:text-red-200">
-            {error}
-          </div>
-        )}
-
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-60"
-        >
-          {loading ? "…" : mode === "login" ? "Login" : "Sign up"}
-        </button>
-
-        <button
-          type="button"
-          onClick={() => setMode(mode === "login" ? "signup" : "login")}
-          className="w-full rounded-md px-4 py-2 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800"
-        >
+        <Input
+          label="Email"
+          type="email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          autoComplete="email"
+          required
+        />
+        <Input
+          label="Password"
+          type="password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          autoComplete={mode === "login" ? "current-password" : "new-password"}
+          required
+        />
+        {error && <Badge color="error">{error}</Badge>}
+        <Button type="submit" variant="primary" size="md" loading={loading} className="w-full">
+          {mode === "login" ? "Login" : "Sign up"}
+        </Button>
+        <Button type="button" variant="ghost" size="md" className="w-full" onClick={() => setMode(mode === "login" ? "signup" : "login")}> 
           {mode === "login" ? "Neu hier? Sign up" : "Schon Account? Login"}
-        </button>
+        </Button>
       </form>
     </div>
   );
