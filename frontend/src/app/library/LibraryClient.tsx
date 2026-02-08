@@ -7,6 +7,7 @@ import { LibraryKind, LibraryItemRow } from "../../lib/libraryTypes";
 import LibraryControls from "../../components/library/LibraryControls";
 import LibraryItemFormModal from "../../components/library/LibraryItemFormModal";
 import LibraryDeleteConfirm from "../../components/library/LibraryDeleteConfirm";
+import { Button, Badge, Card } from "@/components/ui";
 
 interface Props {
   initialStyles: LibraryItemRow[];
@@ -82,41 +83,66 @@ export default function LibraryClient({ initialStyles, initialEnvironments }: Pr
 
   // UI
   return (
-    <div className="max-w-3xl mx-auto py-10 px-4">
-      <h1 className="text-2xl font-bold mb-8">Library Übersicht</h1>
+    <div className="max-w-4xl mx-auto py-10 px-4">
+      <h1 className="text-4xl font-bold mb-8">Library Übersicht</h1>
       <LibraryControls availableTags={[]} />
       {/* Styles Section */}
-      <section className="mb-10">
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="text-xl font-semibold">Styles</h2>
-          <button className="px-3 py-1.5 rounded bg-blue-600 text-white font-semibold" onClick={() => openCreate("styles")}>+ Neu</button>
+      <section className="mb-12">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold">Styles</h2>
+          <Button onClick={() => openCreate("styles")} variant="primary">
+            + Neu
+          </Button>
         </div>
         {styles.length === 0 && (
-          <div className="text-gray-400">Keine Styles gefunden.</div>
+          <div className="text-center py-12 text-sm opacity-60">Keine Styles gefunden.</div>
         )}
         {styles.length > 0 && (
-          <ul className="space-y-3">
+          <ul className="space-y-4">
             {styles.map((item) => (
-              <li key={item.id} className="border rounded p-4 bg-white dark:bg-zinc-800 shadow-sm">
-                <div className="flex items-center justify-between">
-                  <span className="font-bold text-lg">{item.title}</span>
-                  {item.is_public && (
-                    <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded ml-2">Public</span>
+              <li key={item.id}>
+                <Card title={item.title}>
+                  {item.description && (
+                    <p className="text-sm opacity-75 mb-3">{item.description}</p>
                   )}
-                  <div className="flex gap-2">
-                    <button className="px-2 py-1 rounded bg-zinc-200 dark:bg-zinc-700 text-zinc-800 dark:text-zinc-200" onClick={() => openEdit("styles", item)}>Bearbeiten</button>
-                    <button className="px-2 py-1 rounded bg-red-600 text-white" onClick={() => openDelete("styles", item)}>Löschen</button>
+                  
+                  {item.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {item.tags.map((tag) => (
+                        <Badge key={tag} color="info" className="text-xs">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  )}
+                  
+                  <div className="text-xs opacity-50 mb-5">
+                    Zuletzt geändert: {new Date(item.updated_at).toLocaleString()}
                   </div>
-                </div>
-                {item.description && (<div className="text-gray-500 text-sm mt-1">{item.description}</div>)}
-                {item.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-1 mt-2">
-                    {item.tags.map((tag) => (
-                      <span key={tag} className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-0.5 rounded">{tag}</span>
-                    ))}
+                  
+                  {item.is_public && (
+                    <div className="mb-3">
+                      <Badge color="success">Public</Badge>
+                    </div>
+                  )}
+                  
+                  <div className="flex gap-2 pt-4 border-t border-base-300">
+                    <Button
+                      onClick={() => openEdit("styles", item)}
+                      variant="secondary"
+                      size="sm"
+                    >
+                      Bearbeiten
+                    </Button>
+                    <Button
+                      onClick={() => openDelete("styles", item)}
+                      variant="error"
+                      size="sm"
+                    >
+                      Löschen
+                    </Button>
                   </div>
-                )}
-                <div className="text-xs text-gray-400 mt-2">Zuletzt geändert: {new Date(item.updated_at).toLocaleString()}</div>
+                </Card>
               </li>
             ))}
           </ul>
@@ -124,36 +150,61 @@ export default function LibraryClient({ initialStyles, initialEnvironments }: Pr
       </section>
       {/* Environments Section */}
       <section>
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="text-xl font-semibold">Environments</h2>
-          <button className="px-3 py-1.5 rounded bg-blue-600 text-white font-semibold" onClick={() => openCreate("environments")}>+ Neu</button>
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold">Environments</h2>
+          <Button onClick={() => openCreate("environments")} variant="primary">
+            + Neu
+          </Button>
         </div>
         {environments.length === 0 && (
-          <div className="text-gray-400">Keine Environments gefunden.</div>
+          <div className="text-center py-12 text-sm opacity-60">Keine Environments gefunden.</div>
         )}
         {environments.length > 0 && (
-          <ul className="space-y-3">
+          <ul className="space-y-4">
             {environments.map((item) => (
-              <li key={item.id} className="border rounded p-4 bg-white dark:bg-zinc-800 shadow-sm">
-                <div className="flex items-center justify-between">
-                  <span className="font-bold text-lg">{item.title}</span>
-                  {item.is_public && (
-                    <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded ml-2">Public</span>
+              <li key={item.id}>
+                <Card title={item.title}>
+                  {item.description && (
+                    <p className="text-sm opacity-75 mb-3">{item.description}</p>
                   )}
-                  <div className="flex gap-2">
-                    <button className="px-2 py-1 rounded bg-zinc-200 dark:bg-zinc-700 text-zinc-800 dark:text-zinc-200" onClick={() => openEdit("environments", item)}>Bearbeiten</button>
-                    <button className="px-2 py-1 rounded bg-red-600 text-white" onClick={() => openDelete("environments", item)}>Löschen</button>
+                  
+                  {item.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {item.tags.map((tag) => (
+                        <Badge key={tag} color="info" className="text-xs">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  )}
+                  
+                  <div className="text-xs opacity-50 mb-5">
+                    Zuletzt geändert: {new Date(item.updated_at).toLocaleString()}
                   </div>
-                </div>
-                {item.description && (<div className="text-gray-500 text-sm mt-1">{item.description}</div>)}
-                {item.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-1 mt-2">
-                    {item.tags.map((tag) => (
-                      <span key={tag} className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-0.5 rounded">{tag}</span>
-                    ))}
+                  
+                  {item.is_public && (
+                    <div className="mb-3">
+                      <Badge color="success">Public</Badge>
+                    </div>
+                  )}
+                  
+                  <div className="flex gap-2 pt-4 border-t border-base-300">
+                    <Button
+                      onClick={() => openEdit("environments", item)}
+                      variant="secondary"
+                      size="sm"
+                    >
+                      Bearbeiten
+                    </Button>
+                    <Button
+                      onClick={() => openDelete("environments", item)}
+                      variant="error"
+                      size="sm"
+                    >
+                      Löschen
+                    </Button>
                   </div>
-                )}
-                <div className="text-xs text-gray-400 mt-2">Zuletzt geändert: {new Date(item.updated_at).toLocaleString()}</div>
+                </Card>
               </li>
             ))}
           </ul>

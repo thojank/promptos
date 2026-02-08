@@ -7,6 +7,7 @@ import {
   getValidationStatus,
   groupBasePromptSections,
 } from "../../lib/promptHelpers";
+import { Badge, Button, Textarea } from "@/components/ui";
 
 type ModelType = "z-image-turbo" | "banana-pro";
 
@@ -18,18 +19,18 @@ function ValidationBadge({
   status: "default" | "missing" | "empty" | "set" | "warning";
   label: string;
 }) {
-  const colors: Record<string, string> = {
-    default: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200",
-    missing: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200",
-    empty: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200",
-    set: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
-    warning: "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200",
+  const colors: Record<string, "secondary" | "error" | "warning" | "success"> = {
+    default: "secondary",
+    missing: "error",
+    empty: "warning",
+    set: "success",
+    warning: "warning",
   };
 
   return (
-    <span className={`text-xs font-semibold px-2 py-1 rounded ${colors[status]}`}>
+    <Badge color={colors[status]} className="badge-sm">
       {label}
-    </span>
+    </Badge>
   );
 }
 
@@ -44,12 +45,9 @@ function CopyButton({ text, label }: { text: string; label?: string }) {
   };
 
   return (
-    <button
-      onClick={handleCopy}
-      className="text-sm bg-zinc-700 text-white px-3 py-1 rounded hover:bg-zinc-600 transition"
-    >
+    <Button onClick={handleCopy} variant="outline" size="sm">
       {copied ? "✓ Kopiert" : label || "Kopieren"}
-    </button>
+    </Button>
   );
 }
 
@@ -157,109 +155,109 @@ export default function PromptGenerator() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-900 py-10 px-4">
+    <div className="min-h-screen bg-base-100 py-10 px-4">
       <div className="max-w-4xl mx-auto">
         <h1 className="headline-scope text-3xl font-bold mb-6 text-center">Text → JSON Prompt Generator</h1>
         <p className="text-center text-zinc-600 dark:text-zinc-300 mb-8">
           Beschreibe deine Szene. Die KI erstellt daraus ein optimales JSON für dein gewähltes Modell.
         </p>
 
-        <div className="bg-white dark:bg-zinc-800 rounded-xl shadow p-6 mb-6">
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">Modell auswählen</label>
-            <div className="flex gap-4">
-              <button
-                onClick={() => setModel("z-image-turbo")}
-                className={`flex-1 py-2 px-4 rounded transition ${
-                  model === "z-image-turbo"
-                    ? "bg-zinc-900 text-white"
-                    : "bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-300 dark:hover:bg-zinc-600"
-                }`}
-              >
-                Z-Image Turbo
-              </button>
-              <button
-                onClick={() => setModel("banana-pro")}
-                className={`flex-1 py-2 px-4 rounded transition ${
-                  model === "banana-pro"
-                    ? "bg-zinc-900 text-white"
-                    : "bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-300 dark:hover:bg-zinc-600"
-                }`}
-              >
-                Google Banana Pro
-              </button>
+        <div className="card bg-base-100 shadow mb-6">
+          <div className="card-body">
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-2">Modell auswählen</label>
+              <div className="flex gap-2">
+                <Button
+                  onClick={() => setModel("z-image-turbo")}
+                  variant={model === "z-image-turbo" ? "primary" : "outline"}
+                  className="flex-1"
+                >
+                  Z-Image Turbo
+                </Button>
+                <Button
+                  onClick={() => setModel("banana-pro")}
+                  variant={model === "banana-pro" ? "primary" : "outline"}
+                  className="flex-1"
+                >
+                  Google Banana Pro
+                </Button>
+              </div>
             </div>
+            <Textarea
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder={
+                model === "z-image-turbo"
+                  ? "Z.B.: Ein blondes Mädchen, 18 Jahre alt, aus Iowa, sitzt in einer Bibliothek und liest ein Buch..."
+                  : "Z.B.: Ein Porträt mit warmen Farben, natürlichem Licht von links, Hintergrund mit Pflanzen..."
+              }
+              className="w-full h-40"
+            />
+            <Button
+              onClick={handleGenerate}
+              disabled={loading || !input.trim()}
+              loading={loading}
+              variant="primary"
+              className="w-full mt-4"
+            >
+              {loading ? "Generiere..." : "JSON Prompt erstellen"}
+            </Button>
           </div>
-          <textarea
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder={
-              model === "z-image-turbo"
-                ? "Z.B.: Ein blondes Mädchen, 18 Jahre alt, aus Iowa, sitzt in einer Bibliothek und liest ein Buch..."
-                : "Z.B.: Ein Porträt mit warmen Farben, natürlichem Licht von links, Hintergrund mit Pflanzen..."
-            }
-            className="w-full h-40 border rounded px-3 py-2 resize-none dark:bg-zinc-700 dark:border-zinc-600 dark:text-white"
-          />
-          <button
-            onClick={handleGenerate}
-            disabled={loading || !input.trim()}
-            className="mt-4 w-full bg-zinc-900 text-white py-3 rounded hover:bg-zinc-700 transition disabled:opacity-50"
-          >
-            {loading ? "Generiere..." : "JSON Prompt erstellen"}
-          </button>
         </div>
 
-        <div className="bg-white dark:bg-zinc-800 rounded-xl shadow p-6 mb-6">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-bold">Universal BasePrompt</h2>
-            <button
-              onClick={handleGenerateBasePrompt}
-              disabled={baseLoading || !input.trim()}
-              className="bg-zinc-900 text-white py-2 px-4 rounded hover:bg-zinc-700 transition disabled:opacity-50"
-            >
-              {baseLoading ? "Generiere..." : "BasePrompt erzeugen"}
-            </button>
-          </div>
-
-          {baseError && (
-            <div className="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 p-3 rounded mb-4">
-              <strong>Fehler:</strong> {baseError}
+        <div className="card bg-base-100 shadow mb-6">
+          <div className="card-body">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-bold">Universal BasePrompt</h2>
+              <Button
+                onClick={handleGenerateBasePrompt}
+                disabled={baseLoading || !input.trim()}
+                loading={baseLoading}
+                variant="primary"
+              >
+                {baseLoading ? "Generiere..." : "BasePrompt erzeugen"}
+              </Button>
             </div>
-          )}
 
-          {basePrompt && (
-            <div className="space-y-4">
-              {/* Warnings Section */}
-              {(basePromptResponse?.meta?.warnings?.length > 0 ||
-                basePromptResponse?.warnings?.length > 0) && (
-                <div className="bg-orange-50 dark:bg-orange-900 border border-orange-200 dark:border-orange-700 rounded p-4">
-                  <h4 className="font-semibold text-orange-900 dark:text-orange-100 mb-2">
-                    ⚠️ Warnungen
-                  </h4>
-                  <ul className="space-y-1">
-                    {(basePromptResponse?.meta?.warnings ||
-                      basePromptResponse?.warnings ||
-                      []).map((w: string, i: number) => (
-                      <li
-                        key={i}
-                        className="text-sm text-orange-800 dark:text-orange-200"
-                      >
-                        • {w}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+            {baseError && (
+              <div className="alert alert-error mb-4">
+                <strong>Fehler:</strong> {baseError}
+              </div>
+            )}
 
-              {/* Defaults Applied Info */}
-              {basePromptResponse?.defaults_applied?.length > 0 && (
-                <div className="bg-blue-50 dark:bg-blue-900 border border-blue-200 dark:border-blue-700 rounded p-3">
-                  <p className="text-xs text-blue-900 dark:text-blue-100">
-                    <strong>Defaults angewendet:</strong>{" "}
-                    {basePromptResponse.defaults_applied.join(", ")}
-                  </p>
-                </div>
-              )}
+            {basePrompt && (
+              <div className="space-y-4">
+                {/* Warnings Section */}
+                {(basePromptResponse?.meta?.warnings?.length > 0 ||
+                  basePromptResponse?.warnings?.length > 0) && (
+                  <div className="alert alert-warning">
+                    <h4 className="font-semibold mb-2">
+                      ⚠️ Warnungen
+                    </h4>
+                    <ul className="space-y-1">
+                      {(basePromptResponse?.meta?.warnings ||
+                        basePromptResponse?.warnings ||
+                        []).map((w: string, i: number) => (
+                        <li
+                          key={i}
+                          className="text-sm"
+                        >
+                          • {w}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Defaults Applied Info */}
+                {basePromptResponse?.defaults_applied?.length > 0 && (
+                  <div className="alert alert-info">
+                    <p className="text-sm">
+                      <strong>Defaults angewendet:</strong>{" "}
+                      {basePromptResponse.defaults_applied.join(", ")}
+                    </p>
+                  </div>
+                )}
 
               {/* Sections Render */}
               {(() => {
@@ -270,13 +268,13 @@ export default function PromptGenerator() {
                   <div className="space-y-4">
                     {/* Subject(s) Section */}
                     {sections.subjects.length > 0 && (
-                      <div className="border rounded p-4 bg-zinc-50 dark:bg-zinc-700">
+                      <div className="border rounded-box p-4 bg-base-200">
                         <h3 className="font-bold text-lg mb-3">👤 Subjekt/e</h3>
                         <div className="space-y-3">
                           {sections.subjects.map((subject: any, idx: number) => (
                             <div
                               key={idx}
-                              className="border-l-4 border-zinc-300 dark:border-zinc-600 pl-3"
+                              className="border-l-4 border-base-300 pl-3"
                             >
                               <div className="flex items-start gap-2 mb-2">
                                 <span className="font-semibold">
@@ -308,20 +306,20 @@ export default function PromptGenerator() {
                                   />
                                 )}
                               </div>
-                              <p className="text-sm text-zinc-700 dark:text-zinc-300">
+                              <p className="text-sm text-base-content/70">
                                 {subject.description || "(keine Beschreibung)"}
                               </p>
 
                               {subject.attributes?.length > 0 && (
                                 <div className="mt-2">
-                                  <p className="text-xs font-semibold text-zinc-600 dark:text-zinc-400 mb-1">
+                                  <p className="text-xs font-semibold text-base-content/60 mb-1">
                                     Attribute:
                                   </p>
                                   <div className="flex flex-wrap gap-2">
                                     {subject.attributes.map((attr: string, aidx: number) => (
                                       <span
                                         key={aidx}
-                                        className="text-xs bg-zinc-200 dark:bg-zinc-600 px-2 py-1 rounded"
+                                        className="text-xs bg-base-300 px-2 py-1 rounded badge-sm"
                                       >
                                         {attr}
                                       </span>
@@ -337,7 +335,7 @@ export default function PromptGenerator() {
 
                     {/* Environment Section */}
                     {sections.environment && (
-                      <div className="border rounded p-4 bg-zinc-50 dark:bg-zinc-700">
+                      <div className="border rounded-box p-4 bg-base-200">
                         <h3 className="font-bold text-lg mb-3">🌍 Umgeung</h3>
                         <div className="space-y-2 text-sm">
                           <div>
@@ -367,7 +365,7 @@ export default function PromptGenerator() {
                                 />
                               )}
                             </div>
-                            <p className="text-zinc-700 dark:text-zinc-300">
+                            <p className="text-base-content/70">
                               {sections.environment.location ||
                                 "(keine Angabe)"}
                             </p>
@@ -376,7 +374,7 @@ export default function PromptGenerator() {
                           {sections.environment.atmosphere && (
                             <div>
                               <p className="font-semibold">Atmosphäre:</p>
-                              <p className="text-zinc-700 dark:text-zinc-300">
+                              <p className="text-base-content/70">
                                 {sections.environment.atmosphere}
                               </p>
                             </div>
@@ -385,7 +383,7 @@ export default function PromptGenerator() {
                           {sections.environment.weather && (
                             <div>
                               <p className="font-semibold">Wetter:</p>
-                              <p className="text-zinc-700 dark:text-zinc-300">
+                              <p className="text-base-content/70">
                                 {sections.environment.weather}
                               </p>
                             </div>
@@ -396,13 +394,13 @@ export default function PromptGenerator() {
 
                     {/* Style Section */}
                     {sections.style && (
-                      <div className="border rounded p-4 bg-zinc-50 dark:bg-zinc-700">
+                      <div className="border rounded-box p-4 bg-base-200">
                         <h3 className="font-bold text-lg mb-3">🎨 Stil</h3>
                         <div className="space-y-2 text-sm">
                           {sections.style.lighting && (
                             <div>
                               <p className="font-semibold">Beleuchtung:</p>
-                              <p className="text-zinc-700 dark:text-zinc-300">
+                              <p className="text-base-content/70">
                                 {sections.style.lighting}
                               </p>
                             </div>
@@ -411,7 +409,7 @@ export default function PromptGenerator() {
                           {sections.style.camera && (
                             <div>
                               <p className="font-semibold">Kamera/Framing:</p>
-                              <p className="text-zinc-700 dark:text-zinc-300">
+                              <p className="text-base-content/70">
                                 {sections.style.camera}
                               </p>
                             </div>
@@ -420,7 +418,7 @@ export default function PromptGenerator() {
                           {sections.style.film_stock && (
                             <div>
                               <p className="font-semibold">Film-Stil:</p>
-                              <p className="text-zinc-700 dark:text-zinc-300">
+                              <p className="text-base-content/70">
                                 {sections.style.film_stock}
                               </p>
                             </div>
@@ -449,13 +447,13 @@ export default function PromptGenerator() {
 
                     {/* Technical Section */}
                     {sections.technical && (
-                      <div className="border rounded p-4 bg-zinc-50 dark:bg-zinc-700">
+                      <div className="border rounded-box p-4 bg-base-200">
                         <h3 className="font-bold text-lg mb-3">⚙️ Technische Parameter</h3>
                         <div className="space-y-2 text-sm">
                           {sections.technical.aspect_ratio && (
                             <div>
                               <p className="font-semibold">Seitenverhältnis:</p>
-                              <p className="text-zinc-700 dark:text-zinc-300">
+                              <p className="text-base-content/70">
                                 {sections.technical.aspect_ratio}
                               </p>
                             </div>
@@ -465,7 +463,7 @@ export default function PromptGenerator() {
                             sections.technical.seed !== undefined && (
                               <div>
                                 <p className="font-semibold">Seed:</p>
-                                <p className="text-zinc-700 dark:text-zinc-300">
+                                <p className="text-base-content/70">
                                   {sections.technical.seed}
                                 </p>
                               </div>
@@ -474,7 +472,7 @@ export default function PromptGenerator() {
                           {sections.technical.cfg_scale && (
                             <div>
                               <p className="font-semibold">CFG Scale:</p>
-                              <p className="text-zinc-700 dark:text-zinc-300">
+                              <p className="text-base-content/70">
                                 {sections.technical.cfg_scale}
                               </p>
                             </div>
@@ -483,7 +481,7 @@ export default function PromptGenerator() {
                           {sections.technical.steps && (
                             <div>
                               <p className="font-semibold">Steps:</p>
-                              <p className="text-zinc-700 dark:text-zinc-300">
+                              <p className="text-base-content/70">
                                 {sections.technical.steps}
                               </p>
                             </div>
@@ -513,22 +511,24 @@ export default function PromptGenerator() {
                 <select
                   value={adapterModel}
                   onChange={(e) => setAdapterModel(e.target.value)}
-                  className="border rounded px-3 py-2 w-full md:w-60 dark:bg-zinc-700 dark:border-zinc-600"
+                  className="select select-bordered w-full md:w-60"
                 >
                   <option value="flux">Flux</option>
                   <option value="banana-pro">Banana Pro</option>
                 </select>
-                <button
+                <Button
                   onClick={handleAdapt}
                   disabled={adapterLoading}
-                  className="w-full md:w-auto bg-zinc-700 text-white py-2 px-4 rounded hover:bg-zinc-600 transition disabled:opacity-50"
+                  loading={adapterLoading}
+                  variant="primary"
+                  className="w-full md:w-auto"
                 >
                   {adapterLoading ? "Adaptiere..." : "Adapter anwenden"}
-                </button>
+                </Button>
               </div>
 
               {adapterError && (
-                <div className="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 p-3 rounded">
+                <div className="alert alert-error">
                   <strong>Fehler:</strong> {adapterError}
                 </div>
               )}
@@ -537,31 +537,32 @@ export default function PromptGenerator() {
                 <div>
                   <h3 className="font-bold text-lg mb-2">Adapter Output</h3>
                   {adapterOutput?.meta?.warnings?.length > 0 && (
-                    <div className="bg-orange-50 dark:bg-orange-900 border border-orange-200 dark:border-orange-700 rounded p-3 mb-3">
-                      <p className="text-xs text-orange-900 dark:text-orange-100">
+                    <div className="alert alert-warning mb-3">
+                      <p className="text-sm">
                         <strong>Adapter Warnungen:</strong>{" "}
                         {adapterOutput.meta.warnings.join("; ")}
                       </p>
                     </div>
                   )}
-                  <pre className="bg-zinc-100 dark:bg-zinc-900 p-4 rounded overflow-x-auto text-xs">
+                  <pre className="bg-base-200 p-4 rounded overflow-x-auto text-xs">
                     {JSON.stringify(adapterOutput, null, 2)}
                   </pre>
                 </div>
               )}
             </div>
           )}
+          </div>
         </div>
 
         {error && (
-          <div className="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 p-4 rounded mb-6">
+          <div className="alert alert-error mb-6">
             <strong>Fehler:</strong> {error}
           </div>
         )}
 
         {result && (
           <div className="space-y-6">
-            <div className="bg-white dark:bg-zinc-800 rounded-xl shadow p-6">
+            <div className="card bg-base-100 shadow p-6">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-bold">Strukturiertes JSON</h2>
                 <CopyButton
@@ -569,13 +570,13 @@ export default function PromptGenerator() {
                   label="Kopieren"
                 />
               </div>
-              <pre className="bg-zinc-100 dark:bg-zinc-900 p-4 rounded overflow-x-auto text-xs">
+              <pre className="bg-base-200 p-4 rounded overflow-x-auto text-xs">
                 {JSON.stringify(result.json_structure, null, 2)}
               </pre>
             </div>
 
             {result.full_prompt_text && (
-              <div className="bg-white dark:bg-zinc-800 rounded-xl shadow p-6">
+              <div className="card bg-base-100 shadow p-6">
                 <div className="flex justify-between items-center mb-4">
                   <h2 className="text-xl font-bold">Finaler Prompt (600-1000 Wörter)</h2>
                   <CopyButton
@@ -583,10 +584,10 @@ export default function PromptGenerator() {
                     label="Kopieren"
                   />
                 </div>
-                <div className="bg-zinc-100 dark:bg-zinc-900 p-4 rounded text-sm whitespace-pre-wrap">
+                <div className="bg-base-200 p-4 rounded text-sm whitespace-pre-wrap">
                   {result.full_prompt_text}
                 </div>
-                <div className="mt-4 text-sm text-zinc-500">
+                <div className="mt-4 text-sm text-base-content/60">
                   Wörter: {result.word_count} | Validierung:{" "}
                   {result.validation_passed ? "✅ Bestanden" : "❌ Fehlgeschlagen"}
                 </div>

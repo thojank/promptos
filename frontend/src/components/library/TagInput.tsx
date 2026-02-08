@@ -105,13 +105,13 @@ export default function TagInput({ value, onChange, suggestions, placeholder }: 
 
   return (
     <div className="w-full">
-      <div className="flex flex-wrap gap-1 items-center mb-1">
+      <div className="input input-bordered px-2 py-1.5 h-auto flex flex-wrap gap-1 items-center">
         {value.map((tag, idx) => (
-          <span key={tag} className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-0.5 rounded flex items-center">
+          <span key={tag} className="badge badge-info badge-sm">
             {tag}
             <button
               type="button"
-              className="ml-1 text-blue-700 dark:text-blue-300 hover:text-red-500"
+              className="ml-1 text-current hover:text-error"
               onClick={() => removeTag(idx)}
               aria-label="Tag entfernen"
             >×</button>
@@ -123,23 +123,23 @@ export default function TagInput({ value, onChange, suggestions, placeholder }: 
           onChange={handleInput}
           onKeyDown={handleKeyDown}
           placeholder={placeholder || "Tag hinzufügen"}
-          className="flex-1 px-2 py-1 bg-white dark:bg-zinc-800 border-none outline-none text-sm"
+          className="flex-1 px-1 py-0.5 bg-transparent border-none outline-none text-sm"
           style={{ minWidth: 120 }}
         />
       </div>
       {dropdownOpen && (filtered.length > 0 || showCreate) && (
-        <div className="absolute mt-1 w-full z-10 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded shadow-lg">
+        <div className="dropdown-content w-full z-10 bg-base-100 border border-base-300 rounded shadow-lg mt-1">
           {filtered.map((s, idx) => (
             <div
               key={s}
-              className={`px-3 py-2 cursor-pointer ${highlight === idx ? "bg-blue-100 dark:bg-blue-900" : ""}`}
+              className={`px-3 py-2 cursor-pointer ${highlight === idx ? "bg-primary text-primary-content" : "hover:bg-base-200"}`}
               onMouseDown={() => handleSelect(idx)}
               onMouseEnter={() => setHighlight(idx)}
             >{s}</div>
           ))}
           {showCreate && (
             <div
-              className={`px-3 py-2 cursor-pointer ${highlight === filtered.length ? "bg-blue-100 dark:bg-blue-900" : ""}`}
+              className={`px-3 py-2 cursor-pointer ${highlight === filtered.length ? "bg-primary text-primary-content" : "hover:bg-base-200"}`}
               onMouseDown={() => handleSelect(filtered.length)}
               onMouseEnter={() => setHighlight(filtered.length)}
             >+ Tag anlegen: &quot;{input}&quot;</div>

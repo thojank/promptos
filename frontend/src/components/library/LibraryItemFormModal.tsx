@@ -6,6 +6,7 @@ import { LibraryKind, LibraryItemRow } from "../../lib/libraryTypes";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabaseBrowser";
 import TagInput from "./TagInput";
+import { Modal, Button, Input, Badge, Textarea } from "../ui";
 
 interface Props {
   open: boolean;
@@ -101,36 +102,25 @@ export default function LibraryItemFormModal({ open, onClose, onSave, kind, item
     setLoading(false);
   };
 
-  if (!open) return null;
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white dark:bg-zinc-900 rounded-lg shadow-lg p-6 w-full max-w-md"
-      >
-        <h2 className="text-lg font-bold mb-4">{isEdit ? "Bearbeiten" : "Neu anlegen"} ({kind === "styles" ? "Style" : "Environment"})</h2>
-        <div className="mb-3">
-          <label className="block text-sm mb-1">Titel *</label>
-          <input
-            type="text"
-            value={title}
-            onChange={e => setTitle(e.target.value)}
-            className="w-full px-3 py-2 border rounded bg-white dark:bg-zinc-800"
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label className="block text-sm mb-1">Beschreibung</label>
-          <textarea
-            value={description}
-            onChange={e => setDescription(e.target.value)}
-            className="w-full px-3 py-2 border rounded bg-white dark:bg-zinc-800"
-            rows={2}
-          />
-        </div>
-        <div className="mb-3">
-          <label className="block text-sm mb-1">Tags</label>
+    <Modal open={open} title={isEdit ? "Bearbeiten" : "Neu anlegen"} onClose={onClose}>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <Input
+          label="Titel *"
+          value={title}
+          onChange={e => setTitle(e.target.value)}
+          required
+        />
+        <Textarea
+          label="Beschreibung"
+          value={description}
+          onChange={e => setDescription(e.target.value)}
+          rows={2}
+        />
+        <div>
+          <label className="label">
+            <span className="label-text">Tags</span>
+          </label>
           <TagInput
             value={tags}
             onChange={setTags}
@@ -138,40 +128,21 @@ export default function LibraryItemFormModal({ open, onClose, onSave, kind, item
             placeholder="Tag hinzufügen"
           />
         </div>
-        <div className="mb-3">
-          <label className="block text-sm mb-1">Content (JSON) *</label>
-          <textarea
-            value={content}
-            onChange={e => setContent(e.target.value)}
-            className={`w-full px-3 py-2 border rounded bg-white dark:bg-zinc-800 font-mono ${
-              !isValidJSON(content) ? "border-red-500" : "border-green-500"
-            }`}
-            rows={6}
-            required
-          />
-          {!isValidJSON(content) && (
-            <div className="text-red-600 text-xs mt-1">Ungültiges JSON</div>
-          )}
-        </div>
-        {error && <div className="text-red-600 mb-2 text-sm">{error}</div>}
+        <Textarea
+          label="Content (JSON) *"
+          value={content}
+          onChange={e => setContent(e.target.value)}
+          className={`font-mono ${!isValidJSON(content) ? "textarea-error" : "textarea-success"}`}
+          rows={6}
+          required
+          error={!isValidJSON(content) ? "Ungültiges JSON" : undefined}
+        />
+        {error && <Badge color="error">{error}</Badge>}
         <div className="flex justify-end gap-2 mt-4">
-          <button
-            type="button"
-            onClick={onClose}
-            className="px-4 py-2 rounded bg-zinc-200 dark:bg-zinc-700 text-zinc-800 dark:text-zinc-200"
-            disabled={loading}
-          >
-            Abbrechen
-          </button>
-          <button
-            type="submit"
-            className="px-4 py-2 rounded bg-blue-600 text-white font-semibold disabled:opacity-50"
-            disabled={loading || !title.trim()}
-          >
-            {loading ? "Speichern..." : isEdit ? "Speichern" : "Anlegen"}
-          </button>
+          <Button type="button" variant="ghost" onClick={onClose} disabled={loading}>Abbrechen</Button>
+          <Button type="submit" variant="primary" loading={loading} disabled={!title.trim()}>{isEdit ? "Speichern" : "Anlegen"}</Button>
         </div>
       </form>
-    </div>
+    </Modal>
   );
 }
