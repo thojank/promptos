@@ -1,6 +1,18 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Base globals (no Tailwind) */
+
+:root {
+  color-scheme: light;
+  --bg: #ffffff;
+  --fg: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #0a0a0a;
+    --fg: #ededed;
+  }
+}
 
 /* Headlines: Scope One */
 .headline-scope {
@@ -9,7 +21,14 @@
   font-style: normal;
 }
 
+html,
 body {
-  font-family: "Geist", Arial, Helvetica, sans-serif;
+  height: 100%;
 }
 
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Geist", Arial, Helvetica, sans-serif;
+}
